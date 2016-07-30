@@ -28,7 +28,7 @@ object BlazeWebSocketExample extends ServerApp {
         case Text(t, _) => Task.delay( println(t))
         case f       => Task.delay(println(s"Unknown type: $f"))
       }
-      WS(Exchange(src, sink))
+      WS(src, sink)
 
     case req@ GET -> Root / "wsecho" =>
       val q = unboundedQueue[WebSocketFrame]
@@ -36,7 +36,7 @@ object BlazeWebSocketExample extends ServerApp {
         case Text(msg, _) => Text("You sent the server: " + msg)
       }
 
-      WS(Exchange(src, q.enqueue))
+      WS(src, q.enqueue)
   }
 
   def server(args: List[String]) = BlazeBuilder.bindHttp(8080)

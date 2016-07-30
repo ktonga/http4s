@@ -4,8 +4,8 @@ package server
 import org.http4s.websocket.Websocket
 import org.http4s.websocket.WebsocketBits.WebSocketFrame
 
-import scalaz.stream.{Exchange, Process, Sink}
 import scalaz.concurrent.Task
+import scalaz.stream._
 
 package object websocket {
   val websocketKey = AttributeKey.http4s[Websocket]("websocket")
@@ -35,7 +35,8 @@ package object websocket {
    *                 are plans to address this limitation in the future.
    * @param status The status code to return to a client making a non-websocket HTTP request to this route
    */
-  def WS(exchange: Exchange[WebSocketFrame, WebSocketFrame],
+  def WS(source: Process[Task, WebSocketFrame],
+         sink: Sink[Task, WebSocketFrame],
          status: Task[Response] = Response(Status.NotImplemented).withBody("This is a WebSocket route.")): Task[Response] =
-    status.map(_.withAttribute(websocketKey, Websocket(exchange)))
+    status.map(_.withAttribute(websocketKey, Websocket(source, sink)))
 }
