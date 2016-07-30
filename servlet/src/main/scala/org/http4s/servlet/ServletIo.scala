@@ -1,6 +1,8 @@
 package org.http4s
 package servlet
 
+import compat._
+
 import java.util.concurrent.atomic.AtomicReference
 import javax.servlet.{WriteListener, ReadListener}
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
@@ -14,7 +16,6 @@ import scalaz.{\/, -\/}
 import scalaz.concurrent.Task
 import scalaz.stream.Process._
 import scalaz.stream.io.chunkR
-import scalaz.syntax.either._
 
 import org.log4s.getLogger
 

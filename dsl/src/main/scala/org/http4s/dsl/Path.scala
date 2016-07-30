@@ -8,11 +8,12 @@
 package org.http4s
 package dsl
 
+import compat._
+
 import org.http4s.QueryParamDecoder
 import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
 import scalaz.ValidationNel
-import scalaz.syntax.traverse._
 import scalaz.std.list._
 import scalaz.std.option._
 
@@ -154,7 +155,7 @@ case object Root extends Path {
 object /: {
   def unapply(path: Path): Option[(String, Path)] = {
     val asList = path.toList
-    asList.headOption.strengthR(Path(asList.tail))
+    ToFunctorOps(asList.headOption).strengthR(Path(asList.tail))
   }
 }
 

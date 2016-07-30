@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import org.http4s.headers.`Content-Type`
 import org.http4s.parser.QueryParser
 import org.http4s.util.{UrlFormCodec, UrlCodingUtils}
@@ -43,10 +45,8 @@ class UrlForm private (val values: Map[String, Seq[String]]) extends AnyVal {
     * @param ev evidence of the existence of `QueryParamEncoder[T]`
     * @return `UrlForm` updated as it is updated with `updateFormField(key, v)` if `value` is `Some(v)`, otherwise it is unaltered
     */
-  def updateFormField[T](key: String, value: Option[T])(implicit ev: QueryParamEncoder[T]): UrlForm = {
-    import scalaz.syntax.std.option._
-    value.cata[UrlForm](updateFormField(key, _)(ev), this)
-  }
+  def updateFormField[T](key: String, value: Option[T])(implicit ev: QueryParamEncoder[T]): UrlForm =
+    value.fold(this)(updateFormField(key, _)(ev))
 
   /**
     * @param key name of the field
@@ -96,7 +96,6 @@ object UrlForm {
     }
 
   implicit val eqInstance: Equal[UrlForm] = new Equal[UrlForm] {
-    import scalaz.syntax.equal._
     import scalaz.std.list._
     import scalaz.std.string._
     import scalaz.std.map._

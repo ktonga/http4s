@@ -15,7 +15,6 @@ import scalaz.Liskov.{<~<, refl}
 import scalaz.concurrent.Task
 import scalaz.std.string._
 import scalaz.stream.{io, process1}
-import scalaz.syntax.monad._
 import scalaz.{-\/, EitherT, \/, \/-}
 
 import util.UrlFormCodec.{ decode => formDecode }

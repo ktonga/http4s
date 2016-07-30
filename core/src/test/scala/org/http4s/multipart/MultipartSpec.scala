@@ -23,7 +23,6 @@ import scalaz.stream.Process
 import scalaz.std.string._
 import scalaz.std.vector._
 import scalaz.stream.text._
-import scalaz.syntax.equal._
 import org.specs2.Specification
 import org.specs2.matcher.DisjunctionMatchers
 

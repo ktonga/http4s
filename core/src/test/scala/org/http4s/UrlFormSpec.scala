@@ -73,8 +73,6 @@ class UrlFormSpec extends Http4sSpec with ScalaCheck {
     }
 
     "withFormField is effectively equal to factory constructor that takes a Map" in {
-      import scalaz.syntax.equal._
-
       (
         UrlForm.empty +?("foo", 1) +? ("bar", Some(true)) ++? ("dummy", List("a", "b", "c")) === UrlForm(Map("foo" -> Seq("1"), "bar" -> Seq("true"), "dummy" -> List("a", "b", "c")))
       ) must_== (true)

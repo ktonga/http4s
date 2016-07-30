@@ -1,11 +1,12 @@
 package org.http4s
 package parser
 
+import compat._
+
 import org.parboiled2._
 import java.nio.charset.Charset
 import java.net.URLDecoder
 import shapeless.HNil
-import scalaz.syntax.std.option._
 import org.http4s.util.CaseInsensitiveString._
 import org.http4s.{ Query => Q }
 

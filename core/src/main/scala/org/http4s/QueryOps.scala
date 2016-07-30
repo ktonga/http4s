@@ -1,7 +1,9 @@
 package org.http4s
 
+import compat._
+
 import scalaz.Maybe
-import scalaz.syntax.std.option._
+import scalaz.std.option._
 
 trait QueryOps {
 

@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import java.io.{File, InputStream, Reader}
 import java.nio.ByteBuffer
 import java.nio.file.Path
@@ -17,7 +19,6 @@ import scalaz.stream.{Process0, Channel, Process, io}
 import scalaz.stream.nio.file
 import scalaz.stream.Cause.{End, Terminated}
 import scalaz.stream.Process.emit
-import scalaz.syntax.apply._
 import scodec.bits.ByteVector
 
 trait EntityEncoder[A] { self =>

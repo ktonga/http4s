@@ -2,11 +2,12 @@ package org.http4s
 package server
 package middleware
 
+import compat._
+
 import scala.concurrent.duration._
 import scalaz.concurrent.Task
 import java.util.concurrent.{TimeUnit, ScheduledThreadPoolExecutor}
 import scalaz.\/-
-import scalaz.syntax.monad._
 
 object Timeout {
 

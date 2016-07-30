@@ -1,6 +1,8 @@
 package org.http4s
 package client
 
+import compat._
+
 import java.util.concurrent.ExecutorService
 
 import org.log4s.getLogger
@@ -8,7 +10,6 @@ import org.log4s.getLogger
 import scala.annotation.tailrec
 import scala.collection.mutable
 import scalaz.{-\/, \/-}
-import scalaz.syntax.either._
 import scalaz.concurrent.Task
 
 private final class PoolManager[A <: Connection](builder: ConnectionBuilder[A],

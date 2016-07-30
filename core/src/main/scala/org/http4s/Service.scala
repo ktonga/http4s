@@ -1,8 +1,9 @@
 package org.http4s
 
+import compat._
+
 import scalaz.Kleisli
 import scalaz.concurrent.Task
-import scalaz.syntax.kleisli._
 
 object Service {
   /**
