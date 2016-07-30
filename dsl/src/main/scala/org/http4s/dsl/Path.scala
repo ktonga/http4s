@@ -14,9 +14,6 @@ import org.http4s.QueryParamDecoder
 import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
 import scalaz.ValidationNel
-import scalaz.std.list._
-import scalaz.std.option._
-
 import collection.immutable.BitSet
 import scala.util.Try
 

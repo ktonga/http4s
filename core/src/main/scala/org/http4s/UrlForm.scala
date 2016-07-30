@@ -96,10 +96,6 @@ object UrlForm {
     }
 
   implicit val eqInstance: Equal[UrlForm] = new Equal[UrlForm] {
-    import scalaz.std.list._
-    import scalaz.std.string._
-    import scalaz.std.map._
-
     def equal(x: UrlForm, y: UrlForm): Boolean =
       x.values.mapValues(_.toList).view.force === y.values.mapValues(_.toList).view.force
   }

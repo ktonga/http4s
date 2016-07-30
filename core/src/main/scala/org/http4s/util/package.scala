@@ -10,7 +10,6 @@ import scalaz.concurrent.Task
 import scalaz.stream.{process1, Channel, Process, Process1}
 import scalaz.stream.Process._
 import scalaz.stream.io.bufferedChannel
-import scalaz.std.option.none
 
 package object util {
   /** Temporary.  Contribute back to scalaz-stream. */

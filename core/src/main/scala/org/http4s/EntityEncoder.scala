@@ -14,7 +14,6 @@ import org.http4s.headers.{`Transfer-Encoding`, `Content-Type`}
 import org.http4s.multipart.{Multipart, MultipartEncoder}
 import scalaz._
 import scalaz.concurrent.Task
-import scalaz.std.option._
 import scalaz.stream.{Process0, Channel, Process, io}
 import scalaz.stream.nio.file
 import scalaz.stream.Cause.{End, Terminated}

@@ -1,6 +1,8 @@
 package org.http4s
 package multipart
 
+import compat._
+
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -20,8 +22,6 @@ import scodec.bits._
 import org.http4s.EntityEncoder._
 import Entity._
 import scalaz.stream.Process
-import scalaz.std.string._
-import scalaz.std.vector._
 import scalaz.stream.text._
 import org.specs2.Specification
 import org.specs2.matcher.DisjunctionMatchers

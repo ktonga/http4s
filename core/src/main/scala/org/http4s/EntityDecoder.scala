@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import java.io.{File, FileOutputStream, StringReader}
 import javax.xml.parsers.SAXParser
 
@@ -13,7 +15,6 @@ import scala.annotation.unchecked.uncheckedVariance
 import scala.util.control.NonFatal
 import scalaz.Liskov.{<~<, refl}
 import scalaz.concurrent.Task
-import scalaz.std.string._
 import scalaz.stream.{io, process1}
 import scalaz.{-\/, EitherT, \/, \/-}
 

@@ -2,7 +2,6 @@ package org.http4s
 
 import compat._
 
-import scalaz.std.anyVal._
 import scalaz.{Show, Validation, ValidationNel}
 
 

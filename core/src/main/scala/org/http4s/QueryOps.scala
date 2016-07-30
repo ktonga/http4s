@@ -3,7 +3,6 @@ package org.http4s
 import compat._
 
 import scalaz.Maybe
-import scalaz.std.option._
 
 trait QueryOps {
 

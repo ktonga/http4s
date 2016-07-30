@@ -13,7 +13,6 @@ import org.http4s.MediaType._
 import org.http4s.headers._
 import org.http4s.util.CaseInsensitiveString
 import org.http4s.util.string._
-import scalaz.std.string._
 import scalaz.stream.Process.{ constant, emit }
 import scalaz.stream.io.chunkR
 import scalaz.stream.text.utf8Encode
