@@ -41,7 +41,7 @@ class QueryParserSpec extends Http4sSpec {
     }
 
 //    "Gracefully handle invalid URL encoding" in {
-//      parseQueryString("a=b%G") must be_\/-(Query("a" -> Some("b%G")))
+//      parseQueryString("a=b%G") must be_right(Query("a" -> Some("b%G")))
 //    }
 
     "Allow ';' seperators" in {

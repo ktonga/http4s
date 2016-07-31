@@ -1,6 +1,8 @@
 package org.http4s
 package multipart
 
+import compat._
+
 import scala.language.postfixOps
 
 import scodec.bits.ByteVector
@@ -36,15 +38,15 @@ object MultipartParser {
           val (head, tailPre) = bv splitAt index
           val tail = tailPre drop 2       // remove the line feed characters
           val tailM = Some(tail) filter { !_.isEmpty }
-          emit(\/-(Out(head, tailM)))
+          emit(right(Out(head, tailM)))
         }
         else if (bv.nonEmpty && bv.get(bv.length - 1) == '\r') {
           // The CRLF may have split across chunks.
           val (head, cr) = bv.splitAt(bv.length - 1)
-          emit(-\/(head)) ++ receive1(next => handle(cr ++ next))
+          emit(left(head)) ++ receive1(next => handle(cr ++ next))
         }
         else {
-          emit(-\/(bv)) ++ receiveLine(None)
+          emit(left(bv)) ++ receiveLine(None)
         }
       }
 
@@ -93,17 +95,17 @@ object MultipartParser {
           _ = logger.debug(s"Headers: $headers")
           spacePair <- receiveCollapsedLine(tail2)
           tail3 = spacePair.tail // eat the space between header and content
-          part <- emit(-\/(headers)) ++ body(tail3.map(_.compact), expected).flatMap {
+          part <- emit(left(headers)) ++ body(tail3.map(_.compact), expected).flatMap {
             case Out(chunk, None) =>
               logger.debug(s"Chunk: $chunk")
-              emit(\/-(chunk))
+              emit(right(chunk))
             case Out(ByteVector.empty, tail) =>
               logger.trace(s"Resuming with $tail.")
               go(tail)
             case Out(chunk, tail) =>
               logger.debug(s"Last chunk: $chunk.")
               logger.trace(s"Resuming with $tail.")
-              emit(\/-(chunk)) ++ go(tail)
+              emit(right(chunk)) ++ go(tail)
           }
         } yield part
       }

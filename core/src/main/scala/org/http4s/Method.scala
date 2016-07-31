@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import scala.collection.concurrent.TrieMap
 import scalaz._
 

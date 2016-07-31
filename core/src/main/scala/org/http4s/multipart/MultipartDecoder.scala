@@ -1,6 +1,8 @@
 package org.http4s
 package multipart
 
+import compat._
+
 import scala.util.{Try, Success, Failure}
 import scala.util.control._
 import org.http4s._
@@ -49,9 +51,9 @@ private[http4s] object MultipartDecoder {
               .pipe(MultipartParser.parse(Boundary(boundary)))
               .pipe(gatherParts)
               .runLog
-              .map(parts => \/-(Multipart(parts, Boundary(boundary))))
+              .map(parts => right(Multipart(parts, Boundary(boundary))))
               .handle {
-                case e: InvalidMessageBodyFailure => -\/(e)
+                case e: InvalidMessageBodyFailure => left(e)
                 case e => -\/(InvalidMessageBodyFailure("Invalid multipart body", Some(e)))
             }
           }

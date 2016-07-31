@@ -2,6 +2,8 @@ package org.http4s
 package server
 package blaze
 
+import compat._
+
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 
@@ -78,7 +80,7 @@ private class Http2NodeStage(streamId: Int,
     var bytesRead = 0L
 
     val t = Task.async[ByteVector] { cb =>
-      if (complete) cb(-\/(Terminated(End)))
+      if (complete) cb(left(Terminated(End)))
       else channelRead(timeout = timeout).onComplete {
         case Success(DataFrame(last, bytes,_)) =>
           complete = last
@@ -90,36 +92,36 @@ private class Http2NodeStage(streamId: Int,
             val msg = s"Entity too small. Expected $maxlen, received $bytesRead"
             val e = PROTOCOL_ERROR(msg, fatal = false)
             sendOutboundCommand(Cmd.Error(e))
-            cb(-\/(InvalidBodyException(msg)))
+            cb(left(InvalidBodyException(msg)))
           }
           else if (maxlen > 0 && bytesRead > maxlen) {
             val msg = s"Entity too large. Exepected $maxlen, received bytesRead"
             val e = PROTOCOL_ERROR(msg, fatal = false)
             sendOutboundCommand((Cmd.Error(e)))
-            cb(-\/(InvalidBodyException(msg)))
+            cb(left(InvalidBodyException(msg)))
           }
-          else cb(\/-(ByteVector.view(bytes)))
+          else cb(right(ByteVector.view(bytes)))
 
         case Success(HeadersFrame(_, true, ts)) =>
           logger.warn("Discarding trailers: " + ts)
-          cb(\/-(ByteVector.empty))
+          cb(right(ByteVector.empty))
 
         case Success(other) =>  // This should cover it
           val msg = "Received invalid frame while accumulating body: " + other
           logger.info(msg)
           val e = PROTOCOL_ERROR(msg, fatal = true)
           shutdownWithCommand(Cmd.Error(e))
-          cb(-\/(InvalidBodyException(msg)))
+          cb(left(InvalidBodyException(msg)))
 
         case Failure(Cmd.EOF) =>
           logger.debug("EOF while accumulating body")
-          cb(-\/(InvalidBodyException("Received premature EOF.")))
+          cb(left(InvalidBodyException("Received premature EOF.")))
           shutdownWithCommand(Cmd.Disconnect)
 
         case Failure(t) =>
           logger.error(t)("Error in getBody().")
           val e = INTERNAL_ERROR(streamId, fatal = true)
-          cb(-\/(e))
+          cb(left(e))
           shutdownWithCommand(Cmd.Error(e))
       }
     }

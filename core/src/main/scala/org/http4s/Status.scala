@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import java.util.concurrent.atomic.AtomicReferenceArray
 import scalaz._
 
@@ -75,7 +77,7 @@ object Status {
   } yield status
 
   def register(status: Status): status.type = {
-    registry.set(status.code, \/-(status))
+    registry.set(status.code -> right(status))
     status
   }
 

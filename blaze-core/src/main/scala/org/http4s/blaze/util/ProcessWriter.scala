@@ -2,6 +2,8 @@ package org.http4s
 package blaze
 package util
 
+import compat._
+
 import scodec.bits.ByteVector
 
 import scala.annotation.tailrec
@@ -101,14 +103,14 @@ trait ProcessWriter {
     case Halt(Error(Terminated(cause))) => go(Halt(cause), stack, cb)
 
     case Halt(Error(t)) => exceptionFlush().onComplete {
-      case Success(_) => cb(-\/(t))
-      case Failure(_) => cb(-\/(t))
+      case Success(_) => cb(left(t))
+      case Failure(_) => cb(left(t))
     }
   }
 
   private def completionListener(t: Try[Boolean], cb: Callback[Boolean]): Unit = t match {
-    case Success(requireClose) =>  cb(\/-(requireClose))
-    case Failure(t) =>  cb(-\/(t))
+    case Success(requireClose) =>  cb(right(requireClose))
+    case Failure(t) =>  cb(left(t))
   }
 
   @inline

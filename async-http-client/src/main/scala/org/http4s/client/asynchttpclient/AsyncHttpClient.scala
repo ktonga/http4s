@@ -2,6 +2,8 @@ package org.http4s
 package client
 package asynchttpclient
 
+import compat._
+
 import java.util.concurrent.{Callable, Executors, ExecutorService}
 
 import org.asynchttpclient.AsyncHandler.State
@@ -95,7 +97,7 @@ object AsyncHttpClient {
         }
         val body = subscriber.process.map(part => ByteVector(part.getBodyPartBytes))
         val response = disposableResponse.response.copy(body = body)
-        execute(callback(\/-(DisposableResponse(response, Task.delay {
+        execute(callback(right(DisposableResponse(response, Task.delay {
           state = State.ABORT
           subscriber.killQueue()
         }))))
@@ -117,7 +119,7 @@ object AsyncHttpClient {
       }
 
       override def onThrowable(throwable: Throwable): Unit =
-        execute(callback(-\/(throwable)))
+        execute(callback(left(throwable)))
 
       override def onCompleted(): Unit = {}
 

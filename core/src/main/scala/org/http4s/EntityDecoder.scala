@@ -184,5 +184,5 @@ object DecodeResult {
 
   def failure[A](e: Task[DecodeFailure]): DecodeResult[A] = EitherT.left(e)
 
-  def failure[A](e: DecodeFailure): DecodeResult[A] = EitherT(Task.now(-\/(e): DecodeFailure\/A))
+  def failure[A](e: DecodeFailure): DecodeResult[A] = EitherT(Task.now(left(e): DecodeFailure\/A))
 }

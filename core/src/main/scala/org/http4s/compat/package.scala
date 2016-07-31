@@ -7,4 +7,11 @@ package object compat
     with scalaz.syntax.ToTypeClassOps
     with scalaz.syntax.std.ToAllStdOps
     with scalaz.std.AllInstances
+    with scalaz.DisjunctionFunctions
+{
+  def left[A](a: A): scalaz.-\/[A] =
+    scalaz.-\/(a)
 
+  def right[B](b: B): scalaz.\/-[B] =
+    scalaz.\/-(b)
+}

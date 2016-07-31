@@ -1,5 +1,9 @@
 package org.http4s
 
+import compat._
+
+import compat._
+
 import org.specs2.matcher.MustThrownMatchers
 import org.http4s.Uri._
 
@@ -69,7 +73,7 @@ class UriSpec extends Http4sSpec with MustThrownMatchers {
       }
 
       "provide a useful error message if string argument is not url-encoded" in {
-        Uri.fromString("http://example.org/a file") must_=== -\/(ParseFailure("", "'/', 'EOI', '#', '?' or Pchar"))
+        Uri.fromString("http://example.org/a file") must_=== ParseFailure("", "'/', 'EOI', '#', '?' or Pchar").left
       }
     }
 

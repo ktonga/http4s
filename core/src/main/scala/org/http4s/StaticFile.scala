@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import java.io.File
 import java.util.Collections
 import java.net.URL
@@ -123,7 +125,7 @@ object StaticFile {
 
       val innerTask = Task.async[ByteVector]{ cb =>
         // Check for ending condition
-        if (!ch.isOpen) cb(-\/(Terminated(End)))
+        if (!ch.isOpen) cb(left(Terminated(End)))
 
         else {
           val remaining = end - position
@@ -133,7 +135,7 @@ object StaticFile {
             def failed(t: Throwable, attachment: Null) {
               logger.error(t)("Static file NIO process failed")
               ch.close()
-              cb(-\/(t))
+              cb(left(t))
             }
 
             def completed(count: Integer, attachment: Null) {
@@ -149,7 +151,7 @@ object StaticFile {
               position += count
               if (position >= end) ch.close()
 
-              cb(\/-(c))
+              cb(right(c))
             }
           })
         }

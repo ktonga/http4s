@@ -110,7 +110,7 @@ class ClientSyntaxSpec extends Http4sSpec with MustThrownMatchers {
     }
 
     "return an unexpected status when expect returns unsuccessful status" in {
-      client.expect[String](uri("http://www.foo.com/status/500")).attempt must returnValue(-\/(UnexpectedStatus(Status.InternalServerError)))
+      client.expect[String](uri("http://www.foo.com/status/500")).attempt must returnValue(left(UnexpectedStatus(Status.InternalServerError)))
     }
 
     "add Accept header on expect" in {

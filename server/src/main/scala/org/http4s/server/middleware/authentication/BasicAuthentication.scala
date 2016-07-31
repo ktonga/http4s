@@ -3,6 +3,8 @@ package server
 package middleware
 package authentication
 
+import compat._
+
 import org.http4s.headers.Authorization
 import scalaz._
 import scalaz.concurrent.Task
@@ -20,8 +22,8 @@ class BasicAuthentication(realm: String, store: AuthenticationStore) extends Aut
   private case object NeedsAuth extends AuthReply
 
   protected def getChallenge(req: Request) = checkAuth(req).map {
-    case OK(user, realm) => \/-(addUserRealmAttributes(req, user, realm))
-    case NeedsAuth       => -\/(Challenge("Basic", realm, Nil.toMap))
+    case OK(user, realm) => right(addUserRealmAttributes(req, user, realm))
+    case NeedsAuth       => left(Challenge("Basic", realm, Nil.toMap))
   }
 
   private def checkAuth(req: Request): Task[AuthReply] = {

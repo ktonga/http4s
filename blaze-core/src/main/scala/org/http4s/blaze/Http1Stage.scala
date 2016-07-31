@@ -1,6 +1,8 @@
 package org.http4s
 package blaze
 
+import compat._
+
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.time.Instant
@@ -166,10 +168,10 @@ trait Http1Stage { self: TailStage[ByteBuffer] =>
           logger.trace(s"ParseResult: $parseResult, content complete: ${contentComplete()}")
           parseResult match {
             case Some(result) =>
-              cb(\/-(ByteVector(result)))
+              cb(right(ByteVector(result)))
 
             case None if contentComplete() =>
-              cb(-\/(Terminated(End)))
+              cb(left(Terminated(End)))
 
             case None =>
               channelRead().onComplete {
@@ -178,25 +180,25 @@ trait Http1Stage { self: TailStage[ByteBuffer] =>
                   go()
 
                 case Failure(Command.EOF) =>
-                  cb(-\/(eofCondition()))
+                  cb(left(eofCondition()))
 
                 case Failure(t)   =>
                   logger.error(t)("Unexpected error reading body.")
-                  cb(-\/(t))
+                  cb(left(t))
               }
           }
         } catch {
           case t: ParserException =>
             fatalError(t, "Error parsing request body")
-            cb(-\/(InvalidBodyException(t.getMessage())))
+            cb(left(InvalidBodyException(t.getMessage())))
 
           case t: Throwable =>
             fatalError(t, "Error collecting body")
-            cb(-\/(t))
+            cb(left(t))
         }
         go()
       }
-      else cb(-\/(Terminated(End)))
+      else cb(left(Terminated(End)))
     }
 
     (repeatEval(t).onHalt(_.asHalt), () => drainBody(currentBuffer))

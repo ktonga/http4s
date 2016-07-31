@@ -1,5 +1,7 @@
 package org.http4s
 
+import compat._
+
 import scala.util.control.{NoStackTrace, NonFatal}
 import scalaz.concurrent.Task
 import scalaz.{\/-, -\/, Equal}
@@ -58,13 +60,13 @@ object ParseFailure {
 }
 
 object ParseResult {
-  def fail(sanitized: String, details: String) = -\/(ParseFailure(sanitized, details))
-  def success[A](a: A) = \/-(a)
+  def fail(sanitized: String, details: String) = left(ParseFailure(sanitized, details))
+  def success[A](a: A) = right(a)
 
   def fromTryCatchNonFatal[A](sanitized: String)(f: => A): ParseResult[A] =
     try ParseResult.success(f)
     catch {
-      case NonFatal(e) => -\/(ParseFailure(sanitized, e.getMessage))
+      case NonFatal(e) => left(ParseFailure(sanitized, e.getMessage))
     }
 }
 

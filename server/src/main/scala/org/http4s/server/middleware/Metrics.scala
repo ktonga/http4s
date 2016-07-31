@@ -2,6 +2,8 @@ package org.http4s
 package server
 package middleware
 
+import compat._
+
 import java.util.concurrent.TimeUnit
 
 import com.codahale.metrics._
@@ -94,7 +96,7 @@ object Metrics {
             }
           }
 
-          \/-(r.copy(body = body))
+          right(r.copy(body = body))
 
        case e@ -\/(_)       =>
           generalMetrics(method, elapsed)

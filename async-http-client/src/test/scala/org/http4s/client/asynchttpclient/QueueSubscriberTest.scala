@@ -1,4 +1,8 @@
-package org.http4s.client.asynchttpclient
+package org.http4s
+package client
+package asynchttpclient
+
+import compat._
 
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -48,7 +52,7 @@ class QueueSubscriberTest extends SubscriberWhiteboxVerification[Integer](new Te
     }
     val subscriber = createSubscriber()
     publisher.subscribe(subscriber)
-    assertEquals(subscriber.process.runLog.attemptRun, -\/(SadTrombone))
+    assertEquals(subscriber.process.runLog.attemptRun, SadTrombone.left)
   }
 
   @Test

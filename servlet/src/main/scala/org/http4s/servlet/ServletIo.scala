@@ -238,7 +238,7 @@ final case class NonBlockingServletIo(chunkSize: Int) extends ServletIo {
                 cb(writeChunk)
             case e @ Errored(t) =>
               if (state.compareAndSet(blocked, e))
-                cb(-\/(t))
+                cb(left(t))
             case _ =>
           }
         }.map(_(chunk)))(TrampolineExecutionContext)

@@ -1,4 +1,7 @@
-package org.http4s.parser
+package org.http4s
+package parser
+
+import compat._
 
 import java.io.UnsupportedEncodingException
 import java.nio.CharBuffer
@@ -102,7 +105,7 @@ private[http4s] class QueryParser(codec: Codec, colonSeparators: Boolean, qChars
 
 private[http4s] object QueryParser {
   def parseQueryString(queryString: String, codec: Codec = Codec.UTF8): ParseResult[Query] = {
-    if (queryString.isEmpty) \/-(Query.empty)
+    if (queryString.isEmpty) right(Query.empty)
     else new QueryParser(codec, true).decode(CharBuffer.wrap(queryString), true)
   }
 

@@ -45,7 +45,7 @@ private final class PoolManager[A <: Connection](builder: ConnectionBuilder[A],
       val message = s"Invariant broken in ${this.getClass.getSimpleName}! Tried to create more connections than allowed: ${stats}"
       val error = new Exception(message)
       logger.error(error)(message)
-      callback(-\/(error))
+      callback(left(error))
     }
   }
 

@@ -1,4 +1,7 @@
-package org.http4s.parser
+package org.http4s
+package parser
+
+import compat._
 
 import scalaz._
 
@@ -14,8 +17,8 @@ private[http4s] object ScalazDeliverySchemes {
   implicit def Disjunction[L <: HList, Out](implicit unpack: Unpack.Aux[L, Out]) =
     new DeliveryScheme[L] {
       type Result = ParseFailure \/ Out
-      def success(result: L) = \/-(unpack(result))
-      def parseError(error: ParseError) = -\/(ParseFailure("", errorFormattter.formatExpectedAsString(error)))
-      def failure(error: Throwable) = -\/(ParseFailure("Exception during parsing.", error.getMessage))
+      def success(result: L) = right(unpack(result))
+      def parseError(error: ParseError) = left(ParseFailure("", errorFormattter.formatExpectedAsString(error)))
+      def failure(error: Throwable) = left(ParseFailure("Exception during parsing.", error.getMessage))
     }
 }

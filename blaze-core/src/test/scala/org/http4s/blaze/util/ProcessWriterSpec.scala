@@ -2,6 +2,8 @@ package org.http4s
 package blaze
 package util
 
+import compat._
+
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 
@@ -225,7 +227,7 @@ class ProcessWriterSpec extends Specification {
     }
 
     "ProcessWriter must be stack safe" in {
-      val p = Process.repeatEval(Task.async[ByteVector]{ _(\/-(ByteVector.empty))}).take(300000)
+      val p = Process.repeatEval(Task.async[ByteVector]{ _(ByteVector.empty.right)}).take(300000)
 
       // the scalaz.stream built of Task.async's is not stack safe
       p.run.run must throwA[StackOverflowError]

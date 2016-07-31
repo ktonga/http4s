@@ -2,6 +2,8 @@ package org.http4s
 package blaze
 package websocket
 
+import compat._
+
 import org.http4s.websocket.WebsocketBits._
 
 import scala.util.{Failure, Success}
@@ -10,6 +12,7 @@ import org.http4s.blaze.util.Execution.{directec, trampoline}
 import org.http4s.{websocket => ws4s}
 
 import scalaz.stream._
+import scalaz.stream.Process._
 import scalaz.concurrent._
 import scalaz.{\/, \/-, -\/}
 
@@ -26,9 +29,9 @@ class Http4sWSStage(ws: ws4s.Websocket) extends TailStage[WebSocketFrame] {
   def snk: Sink[Task, WebSocketFrame] = sink.lift { frame =>
     Task.async[Unit] { cb =>
       channelWrite(frame).onComplete {
-        case Success(res) => cb(\/-(res))
-        case Failure(Command.EOF) => cb(-\/(Cause.Terminated(Cause.End)))
-        case Failure(t) => cb(-\/(t))
+        case Success(res) => cb(right(res))
+        case Failure(Command.EOF) => cb(left(Cause.Terminated(Cause.End)))
+        case Failure(t) => cb(left(t))
       }(directec)
     }
   }
@@ -40,21 +43,21 @@ class Http4sWSStage(ws: ws4s.Websocket) extends TailStage[WebSocketFrame] {
             case Close(_)    =>
               dead.set(true).run
               sendOutboundCommand(Command.Disconnect)
-              cb(-\/(Cause.Terminated(Cause.End)))
+              cb(left(Cause.Terminated(Cause.End)))
 
             // TODO: do we expect ping frames here?
             case Ping(d)     =>  channelWrite(Pong(d)).onComplete {
               case Success(_)   => go()
-              case Failure(EOF) => cb(-\/(Cause.Terminated(Cause.End)))
-              case Failure(t)   => cb(-\/(t))
+              case Failure(EOF) => cb(left(Cause.Terminated(Cause.End)))
+              case Failure(t)   => cb(left(t))
             }(trampoline)
 
             case Pong(_)     => go()
-            case f           => cb(\/-(f))
+            case f           => cb(right(f))
           }
 
-        case Failure(Command.EOF) => cb(-\/(Cause.Terminated(Cause.End)))
-        case Failure(e)           => cb(-\/(e))
+        case Failure(Command.EOF) => cb(left(Cause.Terminated(Cause.End)))
+        case Failure(e)           => cb(left(e))
       }(trampoline)
 
       go()
@@ -89,9 +92,9 @@ class Http4sWSStage(ws: ws4s.Websocket) extends TailStage[WebSocketFrame] {
 
     // if we never expect to get a message, we need to make sure the sink signals closed
     val routeSink: Sink[Task, WebSocketFrame] = ws.write match {
-      case Process.Halt(Cause.End) => onFinish(\/-(())); discard
-      case Process.Halt(e)   => onFinish(-\/(Cause.Terminated(e))); ws.write
-      case s => s ++ Process.await(Task{onFinish(\/-(()))})(_ => discard)
+      case Process.Halt(Cause.End) => onFinish(right(())); discard
+      case Process.Halt(e)   => onFinish(left(Cause.Terminated(e))); ws.write
+      case s => s ++ Process.await(Task{onFinish(right(()))})(_ => discard)
     }
     
     inputstream.to(routeSink).run.runAsync(onFinish)

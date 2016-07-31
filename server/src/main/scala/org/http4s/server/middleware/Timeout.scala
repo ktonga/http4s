@@ -18,7 +18,7 @@ object Timeout {
     .withBody("The service timed out.")
 
   private def timeoutResp(timeout: Duration, response: Task[Response]): Task[Response] = Task.async[Task[Response]] { cb =>
-    val r = new Runnable { override def run(): Unit = cb(\/-(response)) }
+    val r = new Runnable { override def run(): Unit = cb(right(response)) }
     ec.schedule(r, timeout.toNanos, TimeUnit.NANOSECONDS)
   }.join
 

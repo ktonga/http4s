@@ -2,6 +2,8 @@ package org.http4s
 package client
 package blaze
 
+import compat._
+
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.{ExecutorService, TimeoutException}
@@ -142,15 +144,15 @@ private final class Http1Connection(val requestKey: RequestKey,
           else Task.async[StringWriter] { cb =>
             val bb = ByteBuffer.wrap(rr.result().getBytes(StandardCharsets.ISO_8859_1))
             channelWrite(bb).onComplete {
-              case Success(_)    => cb(\/-(new StringWriter))
+              case Success(_)    => cb(right(new StringWriter))
               case Failure(EOF)  => stageState.get match {
-                  case Idle | Running => shutdown(); cb(-\/(EOF))
-                  case Error(e)       => cb(-\/(e))
+                  case Idle | Running => shutdown(); cb(left(EOF))
+                  case Error(e)       => cb(left(e))
                 }
 
               case Failure(t)    =>
                 fatalError(t, s"Error during phase: flush prelude")
-                cb(-\/(t))
+                cb(left(t))
             }(ec)
           }
 
@@ -177,13 +179,13 @@ private final class Http1Connection(val requestKey: RequestKey,
     channelRead().onComplete {
       case Success(buff) => parsePrelude(buff, closeOnFinish, cb)
       case Failure(EOF)  => stageState.get match {
-        case Idle | Running => shutdown(); cb(-\/(EOF))
-        case Error(e)       => cb(-\/(e))
+        case Idle | Running => shutdown(); cb(left(EOF))
+        case Error(e)       => cb(left(e))
       }
 
       case Failure(t)    =>
         fatalError(t, s"Error during phase: $phase")
-        cb(-\/(t))
+        cb(left(t))
     }(ec)
   }
 
@@ -235,7 +237,7 @@ private final class Http1Connection(val requestKey: RequestKey,
 
         if (parser.contentComplete()) {
           trailerCleanup(); cleanup();
-          cb(\/-(
+          cb(right(
             Response(status = status,
             httpVersion = httpVersion,
             headers = headers,
@@ -253,7 +255,7 @@ private final class Http1Connection(val requestKey: RequestKey,
             }(executor))(_ => Halt(c))
           }
 
-          cb(\/-(
+          cb(right(
             Response(status = status,
               httpVersion = httpVersion,
               headers = headers,
@@ -265,7 +267,7 @@ private final class Http1Connection(val requestKey: RequestKey,
     } catch {
       case t: Throwable =>
         logger.error(t)("Error during client request decode loop")
-        cb(-\/(t))
+        cb(left(t))
     }
   }
 
