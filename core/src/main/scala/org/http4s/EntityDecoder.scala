@@ -1,25 +1,19 @@
 package org.http4s
 
-import compat._
-
-import java.io.{File, FileOutputStream, StringReader}
-import javax.xml.parsers.SAXParser
-
-import org.xml.sax.{InputSource, SAXParseException}
 import java.io.{File, FileOutputStream}
-import org.http4s.headers.`Content-Type`
-import org.http4s.multipart.{Multipart, MultipartDecoder}
-import scodec.bits.ByteVector
-
 import scala.annotation.unchecked.uncheckedVariance
 import scala.util.control.NonFatal
+
 import scalaz.Liskov.{<~<, refl}
 import scalaz.concurrent.Task
-import scalaz.stream.{io, process1}
-import scalaz.{-\/, EitherT, \/, \/-}
+import scalaz.stream.io
 
-import util.UrlFormCodec.{ decode => formDecode }
-import util.byteVector._
+import org.http4s.compat._
+import org.http4s.headers.`Content-Type`
+import org.http4s.multipart.{Multipart, MultipartDecoder}
+import org.http4s.util.UrlFormCodec.{decode => formDecode}
+import org.http4s.util.byteVector._
+import scodec.bits.ByteVector
 
 /** A type that can be used to decode a [[Message]]
   * EntityDecoder is used to attempt to decode a [[Message]] returning the
@@ -173,16 +167,4 @@ trait EntityDecoderInstances {
 
   implicit def multipart: EntityDecoder[Multipart] = 
     MultipartDecoder.decoder
-}
-
-object DecodeResult {
-  def apply[A](task: Task[DecodeFailure \/ A]): DecodeResult[A] = EitherT(task)
-
-  def success[A](a: Task[A]): DecodeResult[A] = EitherT.right(a)
-
-  def success[A](a: A): DecodeResult[A] = EitherT(Task.now(\/.right[DecodeFailure, A](a)))
-
-  def failure[A](e: Task[DecodeFailure]): DecodeResult[A] = EitherT.left(e)
-
-  def failure[A](e: DecodeFailure): DecodeResult[A] = EitherT(Task.now(left(e): DecodeFailure\/A))
 }
