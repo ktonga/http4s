@@ -1,7 +1,7 @@
 package org.http4s
 
-import scalaz.\/._
-import scalaz.{Order, Show}
+import cats._
+import compat.{orderSyntax => _, _}
 
 import org.http4s.parser.{Rfc2616BasicRules, ScalazDeliverySchemes}
 import org.http4s.util.{Renderable, Writer}
@@ -49,6 +49,7 @@ object HttpVersion extends HttpVersionInstances {
 }
 
 trait HttpVersionInstances {
-  implicit val HttpVersionShow = Show.showFromToString[HttpVersion]
+  import compat._
+  implicit val HttpVersionShow = Show.fromToString[HttpVersion]
   implicit val HttpVersionOrder = Order.fromScalaOrdering[HttpVersion]
 }

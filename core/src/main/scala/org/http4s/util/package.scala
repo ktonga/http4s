@@ -1,13 +1,13 @@
 package org.http4s
 
-import scalaz.stream.Process._
-import scalaz.stream.Process1
+import fs2.{Stream => Process}, Process._
 
 import scodec.bits.ByteVector
 
 import java.nio.CharBuffer
 
 package object util {
+  /* FIXME
   /** Temporary.  Contribute back to scalaz-stream. */
   def decode(charset: Charset): Process1[ByteVector, String] = suspend {
     val decoder = charset.nioCharset.newDecoder
@@ -52,6 +52,7 @@ package object util {
 
     breakBigChunks() pipe go() onComplete flush()
   }
+  */
 
   /** Constructs an assertion error with a reference back to our issue tracker. Use only with head hung low. */
   def bug(message: String): AssertionError =

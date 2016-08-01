@@ -22,7 +22,7 @@ package parser
 import org.http4s.headers.ETag.EntityTag
 import org.http4s.headers._
 import org.http4s.util.CaseInsensitiveString._
-import org.http4s.util.NonEmptyList
+import cats.data.NonEmptyList
 import org.parboiled2.Rule1
 
 import java.net.InetAddress

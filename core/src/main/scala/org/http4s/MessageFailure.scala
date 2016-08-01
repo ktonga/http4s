@@ -1,7 +1,7 @@
 package org.http4s
 
-import scalaz.Equal
-import scalaz.concurrent.Task
+import cats.{Eq => Equal, _}
+import fs2._
 
 import org.http4s.compat._
 

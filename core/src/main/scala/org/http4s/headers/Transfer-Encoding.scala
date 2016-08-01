@@ -1,8 +1,11 @@
 package org.http4s
 package headers
 
+import fs2.interop.cats._
+import compat._
+
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.NonEmptyList
+import cats.data.NonEmptyList
 
 object `Transfer-Encoding` extends HeaderKey.Internal[`Transfer-Encoding`] with HeaderKey.Recurring {
   override def parse(s: String): ParseResult[`Transfer-Encoding`] =

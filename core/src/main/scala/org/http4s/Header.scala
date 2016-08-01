@@ -18,6 +18,8 @@
  */
 package org.http4s
 
+import cats.data.NonEmptyList
+
 import org.http4s.util.string._
 import org.http4s.util._
 

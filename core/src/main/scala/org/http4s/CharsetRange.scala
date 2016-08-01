@@ -1,6 +1,7 @@
 package org.http4s
 
-import scalaz.{Order, Show}
+import cats._
+import compat._
 
 import org.http4s.util._
 

@@ -1,6 +1,7 @@
 package org.http4s
 
-import scalaz.concurrent.Task
+import fs2._
+import fs2.interop.cats._
 
 import org.http4s.headers.{`Content-Type`, `Set-Cookie`}
 

@@ -1,6 +1,7 @@
 package org.http4s
 
-import scalaz.{Equal, Monoid}
+import cats.{Eq => Equal, _}
+import compat._
 
 /**
   * Encapsulates the notion of fallthrough orElse for a Service

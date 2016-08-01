@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz._
+import cats.{Eq => Equal, _}, data.{Xor => \/, _}, \/.{Right => \/-}
 
 import org.http4s.Method.Semantics
 import org.http4s.parser.Rfc2616BasicRules

@@ -1,7 +1,6 @@
 package org.http4s.websocket
 
-import scalaz.concurrent.Task
-import scalaz.stream._
+import fs2.{Stream => Process, _}
 
 import org.http4s.websocket.WebsocketBits.WebSocketFrame
 

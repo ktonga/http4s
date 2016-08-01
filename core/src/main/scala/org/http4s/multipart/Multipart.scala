@@ -1,9 +1,10 @@
 package org.http4s
 package multipart
 
-import scalaz.stream.Process.{constant, emit}
-import scalaz.stream.io.chunkR
-import scalaz.stream.text.utf8Encode
+import fs2.{Stream => Process, _}, Process._
+import fs2.io.file._
+import fs2.text._
+import compat._
 
 import org.http4s.headers._
 import org.http4s.util.CaseInsensitiveString
@@ -35,7 +36,7 @@ object Part {
     Part(`Content-Disposition`("form-data", Map("name" -> name, "filename" -> filename)) +:
            Header("Content-Transfer-Encoding", "binary") +:
            headers,
-         constant(8192).toSource through chunkR(in))
+         readInputStream(Task.delay(in), 8192))
    }
 }
 

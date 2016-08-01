@@ -1,7 +1,8 @@
 package org.http4s
 
-import scalaz.{EitherT, \/}
-import scalaz.concurrent.Task
+import cats.data.{Xor => \/, XorT => EitherT, _}
+import fs2._
+import fs2.interop.cats._
 
 object DecodeResult {
   def apply[A](task: Task[DecodeFailure \/ A]): DecodeResult[A] =

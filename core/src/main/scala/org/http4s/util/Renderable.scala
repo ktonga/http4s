@@ -1,5 +1,7 @@
 package org.http4s.util
 
+import cats.data.NonEmptyList
+
 import scodec.bits.ByteVector
 
 import java.nio.charset.{Charset, StandardCharsets}

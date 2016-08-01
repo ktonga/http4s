@@ -18,7 +18,8 @@
  */
 package org.http4s
 
-import scalaz.\/
+import cats.data.{Xor => \/}
+import compat._
 
 import org.http4s.util._
 

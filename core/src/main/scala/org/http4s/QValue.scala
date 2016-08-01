@@ -1,6 +1,7 @@
 package org.http4s
 
-import scalaz._
+import cats._
+import compat._
 
 import org.http4s.util.{Renderable, Writer}
 

@@ -1,7 +1,7 @@
 package org.http4s
 package parser
 
-import scalaz._
+import cats.data.{Xor => \/, _}
 
 import org.http4s.compat._
 import org.parboiled2.Parser.DeliveryScheme

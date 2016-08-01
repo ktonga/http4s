@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz.{Equal, \/}
+import cats.{Eq => Equal, _}, data.{Xor => \/, _}
 
 import org.http4s.compat._
 import org.http4s.headers.`Content-Type`

@@ -1,6 +1,10 @@
 package org.http4s
 
-import org.http4s.util.{CaseInsensitiveString, NonEmptyList}
+import compat._
+
+import cats.data.NonEmptyList
+
+import org.http4s.util.CaseInsensitiveString
 import org.http4s.util.string._
 
 import scala.annotation.tailrec
@@ -41,7 +45,7 @@ object HeaderKey {
     type HeaderT <: Header.Recurring
     type GetT = Option[HeaderT]
     def apply(values: NonEmptyList[HeaderT#Value]): HeaderT
-    def apply(first: HeaderT#Value, more: HeaderT#Value*): HeaderT = apply(NonEmptyList.apply(first, more: _*))
+    def apply(first: HeaderT#Value, more: HeaderT#Value*): HeaderT = apply(NonEmptyList(first, more: _*))
     def from(headers: Headers): Option[HeaderT] = {
       @tailrec def loop(hs: Headers, acc: NonEmptyList[HeaderT#Value]): NonEmptyList[HeaderT#Value] =
         if (hs.nonEmpty) matchHeader(hs.head) match {
@@ -51,7 +55,7 @@ object HeaderKey {
         else acc
       @tailrec def start(hs: Headers): Option[HeaderT] =
         if (hs.nonEmpty) matchHeader(hs.head) match {
-          case Some(header) => Some(apply(loop(hs.tail, header.values)))
+          case Some(header) => Some(apply(loop(hs.tail, header.values.widen[HeaderT#Value])))
           case None => start(hs.tail)
         }
         else None

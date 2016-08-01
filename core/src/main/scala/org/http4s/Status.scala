@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz._
+import cats._, data.Xor.{Right => \/-}
 
 import org.http4s.Status.ResponseClass
 import org.http4s.compat._

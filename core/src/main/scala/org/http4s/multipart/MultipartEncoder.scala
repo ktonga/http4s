@@ -1,8 +1,7 @@
 package org.http4s
 package multipart
 
-import scalaz.concurrent.Task
-import scalaz.stream.Process
+import fs2.{Stream => Process, _}
 
 import org.http4s.EntityEncoder._
 import org.http4s.headers.{`Content-Disposition` => ContentDisposition, `Content-Type` => ContentType}

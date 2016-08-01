@@ -1,8 +1,10 @@
 package org.http4s
 package headers
 
+import compat._
+
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.NonEmptyList
+import cats.data.NonEmptyList
 
 object `Accept-Charset` extends HeaderKey.Internal[`Accept-Charset`] with HeaderKey.Recurring {
   override def parse(s: String): ParseResult[`Accept-Charset`] =

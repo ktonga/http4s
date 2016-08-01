@@ -1,12 +1,12 @@
 package org.http4s
 
-import scalaz.Liskov.{<~<, refl}
-import scalaz.concurrent.Task
-import scalaz.stream.io
+import fs2._
+import fs2.io.file._
+import fs2.interop.cats._
 
 import org.http4s.compat._
 import org.http4s.headers.`Content-Type`
-import org.http4s.multipart.{Multipart, MultipartDecoder}
+import org.http4s.multipart.Multipart
 import org.http4s.util.UrlFormCodec.{decode => formDecode}
 import org.http4s.util.byteVector._
 import scodec.bits.ByteVector
@@ -48,16 +48,15 @@ trait EntityDecoder[T] { self =>
     * and if not, defer to the second [[EntityDecoder]]
     * @param other backup [[EntityDecoder]]
     */
-  def orElse[T2](other: EntityDecoder[T2])(implicit ev: T <~< T2): EntityDecoder[T2] =
+  def orElse[T2 >: T](other: EntityDecoder[T2]): EntityDecoder[T2] =
     new EntityDecoder.OrDec(widen[T2], other)
 
   /** true if this [[EntityDecoder]] knows how to decode the provided [[MediaType]] */
   def matchesMediaType(mediaType: MediaType): Boolean =
     consumes.exists(_.satisfiedBy(mediaType))
 
-  // shamelessly stolen from IList
-  def widen[B](implicit ev: T <~< B): EntityDecoder[B] =
-    ev.subst[({type λ[-α] = EntityDecoder[α @uncheckedVariance] <~< EntityDecoder[B]})#λ](refl)(this)
+  def widen[B >: T]: EntityDecoder[B] =
+    this.asInstanceOf[EntityDecoder[B]]
 }
 
 /** EntityDecoder is used to attempt to decode an [[EntityBody]]
@@ -122,11 +121,11 @@ object EntityDecoder extends EntityDecoderInstances {
 
   /** Helper method which simply gathers the body into a single ByteVector */
   def collectBinary(msg: Message): DecodeResult[ByteVector] =
-    DecodeResult.success(msg.body.runFoldMap(identity))
+    DecodeResult.success(msg.body.chunks.runFoldMap(chunk => ByteVector.view(chunk.toArray)))
 
   /** Decodes a message to a String */
   def decodeString(msg: Message)(implicit defaultCharset: Charset = DefaultCharset): Task[String] =
-    msg.bodyAsText.foldMonoid.runLastOr("")
+    msg.bodyAsText.runFoldMap(identity)
 }
 
 /** Implementations of the EntityDecoder instances */
@@ -155,16 +154,18 @@ trait EntityDecoderInstances {
   // File operations // TODO: rewrite these using NIO non blocking FileChannels, and do these make sense as a 'decoder'?
   def binFile(file: File): EntityDecoder[File] =
     EntityDecoder.decodeBy(MediaRange.`*/*`){ msg =>
-      val p = io.chunkW(new java.io.FileOutputStream(file))
+      val p = writeOutputStream[Task](Task.delay(new java.io.FileOutputStream(file)))
       DecodeResult.success(msg.body.to(p).run).map(_ => file)
     }
 
   def textFile(file: java.io.File): EntityDecoder[File] =
     EntityDecoder.decodeBy(MediaRange.`text/*`){ msg =>
-      val p = io.chunkW(new java.io.PrintStream(new FileOutputStream(file)))
+      val p = writeOutputStream[Task](Task.delay(new java.io.PrintStream(new FileOutputStream(file))))
       DecodeResult.success(msg.body.to(p).run).map(_ => file)
     }
 
+  /* FIXME
   implicit def multipart: EntityDecoder[Multipart] = 
     MultipartDecoder.decoder
+  */
 }

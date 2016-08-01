@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz.{Show, Validation, ValidationNel}
+import cats._, data.{ValidatedNel => ValidationNel, Validated => Validation, _}
 
 import org.http4s.compat._
 

@@ -2,7 +2,7 @@ package org.http4s
 package headers
 
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.NonEmptyList
+import cats.data.NonEmptyList
 
 object `WWW-Authenticate` extends HeaderKey.Internal[`WWW-Authenticate`] with HeaderKey.Recurring {
   override def parse(s: String): ParseResult[`WWW-Authenticate`] =

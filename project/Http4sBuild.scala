@@ -64,6 +64,8 @@ object Http4sBuild extends Build {
   lazy val circeGeneric        = "io.circe"                 %% "circe-generic"           % circeJawn.revision
   lazy val circeJawn           = "io.circe"                 %% "circe-jawn"              % "0.4.1"
   lazy val discipline          = "org.typelevel"            %% "discipline"              % "0.5"
+  lazy val fs2Cats             = "co.fs2"                   %% "fs2-cats"                % "0.1.0-M6"
+  lazy val fs2Io               = "co.fs2"                   %% "fs2-io"                  % "0.9.0-M6"
   lazy val gatlingTest         = "io.gatling"                % "gatling-test-framework"  % "2.2.1"
   lazy val gatlingHighCharts   = "io.gatling.highcharts"     % "gatling-charts-highcharts" % gatlingTest.revision
   lazy val http4sWebsocket     = "org.http4s"               %% "http4s-websocket"        % "0.1.3"
@@ -88,12 +90,10 @@ object Http4sBuild extends Build {
   lazy val reactiveStreamsTck  = "org.reactivestreams"       % "reactive-streams-tck"    % "1.0.0"
   def scalaReflect(sv: String) = "org.scala-lang"            % "scala-reflect"           % sv
   lazy val scalaXml            = "org.scala-lang.modules"   %% "scala-xml"               % "1.0.5"
-  def scalazCore(version: String)               = "org.scalaz"           %% "scalaz-core"               % version
-  def scalazScalacheckBinding(version: String)  = "org.scalaz"           %% "scalaz-scalacheck-binding" % version
+  lazy val scodecBits          = "org.scodec"               %% "scodec-bits"             % "1.1.0"  
   def specs2Core(scalazVersion: String)         = "org.specs2"           %% "specs2-core"               % specs2Version(scalazVersion)
   def specs2MatcherExtra(scalazVersion: String) = "org.specs2"           %% "specs2-matcher-extra"      % specs2Core(scalazVersion).revision
   def specs2Scalacheck(scalazVersion: String)   = "org.specs2"           %% "specs2-scalacheck"         % specs2Core(scalazVersion).revision
-  def scalazStream(scalazVersion: String)       = "org.scalaz.stream"    %% "scalaz-stream"             % scalazCrossBuild("0.8.2", scalazVersion)
   lazy val tomcatCatalina      = "org.apache.tomcat"         % "tomcat-catalina"         % "8.0.36"
   lazy val tomcatCoyote        = "org.apache.tomcat"         % "tomcat-coyote"           % tomcatCatalina.revision
   lazy val twirlApi            = "com.typesafe.play"        %% "twirl-api"               % "1.2.0"

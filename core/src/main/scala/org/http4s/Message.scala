@@ -1,8 +1,8 @@
 package org.http4s
 
-import scalaz.concurrent.Task
-import scalaz.stream.Process
-import scalaz.stream.text.utf8Decode
+import fs2.{Stream => Process, _}, Process._
+import fs2.text.utf8Decode
+import fs2.interop.cats._
 
 import org.http4s.compat._
 import org.http4s.headers._

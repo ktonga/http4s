@@ -1,11 +1,8 @@
 package org.http4s
 
-import scalaz._
-import scalaz.concurrent.Task
-import scalaz.stream.Cause.{End, Terminated}
-import scalaz.stream.Process.emit
-import scalaz.stream.nio.file
-import scalaz.stream.{Channel, Process, Process0, io}
+import cats.{Eq => Equal, _}, functor._
+import fs2.{Stream => Process, _}, Process._
+import fs2.io.file
 
 import org.http4s.EntityEncoder._
 import org.http4s.compat._
@@ -58,7 +55,7 @@ object EntityEncoder extends EntityEncoderInstances {
 
   object Entity {
     implicit val entityInstance: Monoid[Entity] = Monoid.instance(
-      (a, b) => Entity(a.body ++ b.body, (a.length |@| b.length) { _ + _ }),
+      (a, b) => Entity(a.body ++ b.body, (a.length |@| b.length).map{ _ + _ }),
       empty
     )
 
@@ -82,8 +79,8 @@ object EntityEncoder extends EntityEncoderInstances {
     * This constructor is a helper for types that can be serialized synchronously, for example a String.
     */
   def simple[A](hs: Header*)(toChunk: A => ByteVector): EntityEncoder[A] = encodeBy(hs:_*){ a =>
-    val c = toChunk(a)
-    Task.now(Entity(emit(c), Some(c.length)))
+    val c = Chunk.bytes(toChunk(a).toArray)
+    Task.now(Entity(chunk(c), Some(c.size)))
   }
 }
 
@@ -124,8 +121,8 @@ trait EntityEncoderInstances0 {
         }
     }
 
-  implicit def process0Encoder[A](implicit W: EntityEncoder[A]): EntityEncoder[Process0[A]] =
-    sourceEncoder[A].contramap(_.toSource)
+  implicit def process0Encoder[A](implicit W: EntityEncoder[A]): EntityEncoder[Process[Nothing, A]] =
+    sourceEncoder[A].contramap(_.covary[Task])
 }
 
 trait EntityEncoderInstances extends EntityEncoderInstances0 {

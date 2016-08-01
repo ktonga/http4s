@@ -1,8 +1,10 @@
 package org.http4s
 package headers
 
+import cats.data.NonEmptyList
+
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.{NonEmptyList, Writer}
+import org.http4s.util.Writer
 
 import java.net.InetAddress
 

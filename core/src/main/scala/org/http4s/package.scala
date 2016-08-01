@@ -1,8 +1,8 @@
 package org
 
-import scalaz.{EitherT, Kleisli, \/}
-import scalaz.concurrent.Task
-import scalaz.stream.Process
+import cats.data.{Xor => \/, XorT => EitherT, _}
+import fs2.{Stream => Process, _}
+import compat._
 
 import org.http4s.util.CaseInsensitiveString
 import scodec.bits.ByteVector
@@ -11,9 +11,9 @@ package object http4s {
 
   type AuthScheme = CaseInsensitiveString
 
-  type EntityBody = Process[Task, ByteVector]
+  type EntityBody = fs2.Stream[Task, Byte]
 
-  def EmptyBody = Process.halt
+  def EmptyBody = fs2.Stream.empty
 
   type DecodeResult[T] = EitherT[Task, DecodeFailure, T]
 
@@ -54,7 +54,7 @@ package object http4s {
       * where the function is undefined.
       */
     def apply(pf: PartialFunction[Request, Task[Response]], default: HttpService = empty): HttpService =
-      Service.lift(req => pf.applyOrElse(req, default))
+      Service.lift(req => pf.applyOrElse(req, default.run))
   
     /** Alternative application  which lifts a partial function to an `HttpService`,
       * answering with a [[Response]] as supplied by the default argument.
@@ -75,9 +75,10 @@ package object http4s {
       * services will have the opportunity to handle the request.
       * See [[Fallthrough]] for more details.
       */
-    val notFound: Task[Response] = Task.now(Response(Status.NotFound)
-                                               .withAttribute(Fallthrough.fallthroughKey, ())
-                                               .withBody("404 Not Found.").run)
+    val notFound: Task[Response] =
+      Response(Status.NotFound)
+        .withAttribute(Fallthrough.fallthroughKey, ())
+        .withBody("404 Not Found.")
   
     val empty   : HttpService    = Service.const(notFound)
   }

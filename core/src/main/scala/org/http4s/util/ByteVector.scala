@@ -1,6 +1,8 @@
-package org.http4s.util
+package org.http4s
+package util
 
-import scalaz.Monoid
+import cats._
+import compat._
 
 import scodec.bits.ByteVector
 

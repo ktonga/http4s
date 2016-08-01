@@ -1,9 +1,8 @@
 package org.http4s
 
-import scalaz.concurrent.{Strategy, Task}
-import scalaz.stream.Cause.{End, Terminated}
-import scalaz.stream.Process._
-import scalaz.stream.{Process, io}
+import cats._
+import fs2.{Stream => Process, _}, Process._
+import fs2.io.file._
 
 import org.http4s.Status.NotModified
 import org.http4s.compat._
@@ -22,6 +21,8 @@ import java.util.concurrent.ExecutorService
 // TODO: consider using the new scalaz.stream.nio.file operations
 object StaticFile {
   private[this] val logger = getLogger
+  private def left[A](a: A) = Left(a)
+  private def right[B](b: B) = Right(b)
 
   val DefaultBufferSize = 10240
 
@@ -84,7 +85,7 @@ object StaticFile {
     notModified orElse {
 
       val (body, contentLength) =
-        if (f.length() < end) (halt, 0)
+        if (f.length() < end) (EmptyBody, 0)
         else (fileToBody(f, start, end, buffsize), (end - start).toInt)
 
       val contentType = {
@@ -112,61 +113,9 @@ object StaticFile {
 
   private def fileToBody(f: File, start: Long, end: Long, buffsize: Int)
                 (implicit es: ExecutorService): EntityBody = {
-
-    val outer = Task {
-
-      val ch = AsynchronousFileChannel.open(f.toPath, Collections.emptySet(), es)
-
-      val buff = ByteBuffer.allocate(buffsize)
-      var position = start
-
-      val innerTask = Task.async[ByteVector]{ cb =>
-        // Check for ending condition
-        if (!ch.isOpen) cb(left(Terminated(End)))
-
-        else {
-          val remaining = end - position
-          if (buff.capacity() > remaining) buff.limit(remaining.toInt)
-
-          ch.read(buff, position, null: Null, new CompletionHandler[Integer, Null] {
-            def failed(t: Throwable, attachment: Null) {
-              logger.error(t)("Static file NIO process failed")
-              ch.close()
-              cb(left(t))
-            }
-
-            def completed(count: Integer, attachment: Null) {
-              logger.trace(s"Read $count bytes")
-              buff.flip()
-
-              // Don't make yet another copy unless we need to
-              val c = if (buffsize == count) {
-                ByteVector(buff.array())
-              } else ByteVector(buff)
-
-              buff.clear()
-              position += count
-              if (position >= end) ch.close()
-
-              cb(right(c))
-            }
-          })
-        }
-      }
-
-      val cleanup: Process[Task, Nothing] = eval_(Task[Unit]{
-        logger.trace(s"Cleaning up file: ensuring ${f.toURI} is closed")
-        if (ch.isOpen) ch.close()
-      })
-
-      def go(c: ByteVector): EntityBody = {
-        emit(c) ++ awaitOr(innerTask)(_ => cleanup)(go)
-      }
-
-      await(innerTask)(go)
-    }
-
-    await(outer)(identity)
+    fs2.io.file.readAll[Task](f.toPath, buffsize)
+        .drop(start.toInt) // FIXME this is horrible
+        .take(end.toInt)
   }
 
   private[http4s] val staticFileKey = AttributeKey.http4s[File]("staticFile")
