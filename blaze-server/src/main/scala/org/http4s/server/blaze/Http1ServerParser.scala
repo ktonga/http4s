@@ -1,13 +1,13 @@
 package org.http4s
 package server.blaze
 
-import java.nio.ByteBuffer
+import scalaz.\/
+import scalaz.concurrent.Task
 
 import org.log4s.Logger
 
+import java.nio.ByteBuffer
 import scala.collection.mutable.ListBuffer
-import scalaz.\/
-import scalaz.concurrent.Task
 
 
 private final class Http1ServerParser(logger: Logger,

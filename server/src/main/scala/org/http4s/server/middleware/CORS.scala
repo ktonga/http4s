@@ -2,28 +2,15 @@ package org.http4s
 package server
 package middleware
 
-import Method.OPTIONS
+import scalaz.Kleisli._
+import scalaz.Scalaz._
+import scalaz._
 
-import org.http4s.headers.{
-  `Access-Control-Allow-Origin`,
-  `Access-Control-Allow-Credentials`,
-  `Access-Control-Allow-Methods`,
-  `Access-Control-Allow-Headers`,
-  `Access-Control-Expose-Headers`,
-  `Access-Control-Max-Age`,
-  `Access-Control-Request-Method`,
-  `Access-Control-Request-Headers`,
-  Origin
-}
-
+import org.http4s.Method.OPTIONS
+import org.http4s.headers.{Origin, `Access-Control-Request-Method`}
 import org.log4s.getLogger
 
 import scala.concurrent.duration._
-
-import scalaz._
-import Scalaz._
-import scalaz.concurrent.Task
-import scalaz.Kleisli._
 
 /**
   * CORS middleware config options.

@@ -1,14 +1,15 @@
 package org.http4s
 package scalaxml
 
-import scodec.bits.ByteVector
-
-import scala.xml.Elem
 import scalaz.concurrent.Task
 import scalaz.stream.Process
 import scalaz.stream.Process.emit
 import scalaz.stream.text.utf8Decode
-import Status.Ok
+
+import org.http4s.Status.Ok
+import scodec.bits.ByteVector
+
+import scala.xml.Elem
 
 class ScalaXmlSpec extends Http4sSpec {
 

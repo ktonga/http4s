@@ -2,18 +2,18 @@ package org.http4s
 package blaze
 package util
 
-import compat._
+import scalaz.{-\/, \/-}
+import scalaz.concurrent.Task
+import scalaz.stream.Cause._
+import scalaz.stream.Process._
+import scalaz.stream.{Cause, Process}
 
+import org.http4s.compat._
 import scodec.bits.ByteVector
 
 import scala.annotation.tailrec
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
-import scalaz.concurrent.Task
-import scalaz.stream.{Cause, Process}
-import scalaz.stream.Process._
-import scalaz.stream.Cause._
-import scalaz.{-\/, \/, \/-}
 
 
 trait ProcessWriter {

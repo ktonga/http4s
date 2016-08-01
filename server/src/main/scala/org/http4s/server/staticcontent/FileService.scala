@@ -2,14 +2,14 @@ package org.http4s
 package server
 package staticcontent
 
+import scalaz.concurrent.{Strategy, Task}
+
+import org.http4s.headers.Range.SubRange
+import org.http4s.headers.{Range, `Content-Range`}
+import org.http4s.util._
+
 import java.io.File
 import java.util.concurrent.ExecutorService
-
-import org.http4s.headers.{`Content-Range`, Range}
-import org.http4s.headers.Range.SubRange
-
-import scalaz.concurrent.{Strategy, Task}
-import org.http4s.util._
 
 
 object FileService {

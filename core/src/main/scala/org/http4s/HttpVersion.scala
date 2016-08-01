@@ -1,13 +1,14 @@
 package org.http4s
 
-import scala.language.experimental.macros
-import scala.math.Ordered.orderingToOrdered
-import scalaz.{\/-, Order, Show, -\/}
 import scalaz.\/._
+import scalaz.{Order, Show}
 
-import org.http4s.parser.{ScalazDeliverySchemes, Rfc2616BasicRules}
+import org.http4s.parser.{Rfc2616BasicRules, ScalazDeliverySchemes}
 import org.http4s.util.{Renderable, Writer}
 import org.parboiled2._
+
+import scala.language.experimental.macros
+import scala.math.Ordered.orderingToOrdered
 
 /**
  * An HTTP version, as seen on the start line of an HTTP request or response.

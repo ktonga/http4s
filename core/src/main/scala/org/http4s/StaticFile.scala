@@ -1,26 +1,23 @@
 package org.http4s
 
-import compat._
-
-import java.io.File
-import java.util.Collections
-import java.net.URL
-import java.nio.ByteBuffer
-import java.nio.channels.{CompletionHandler, AsynchronousFileChannel}
-import java.util.concurrent.ExecutorService
-import java.time.Instant
-
-import scalaz.stream.Cause.{End, Terminated}
-import scalaz.{\/-, -\/}
 import scalaz.concurrent.{Strategy, Task}
-import scalaz.stream.io
-import scalaz.stream.Process
-import Process._
+import scalaz.stream.Cause.{End, Terminated}
+import scalaz.stream.Process._
+import scalaz.stream.{Process, io}
 
-import org.http4s.headers._
 import org.http4s.Status.NotModified
+import org.http4s.compat._
+import org.http4s.headers._
 import org.log4s.getLogger
 import scodec.bits.ByteVector
+
+import java.io.File
+import java.net.URL
+import java.nio.ByteBuffer
+import java.nio.channels.{AsynchronousFileChannel, CompletionHandler}
+import java.time.Instant
+import java.util.Collections
+import java.util.concurrent.ExecutorService
 
 // TODO: consider using the new scalaz.stream.nio.file operations
 object StaticFile {

@@ -2,16 +2,13 @@ package org.http4s
 package server
 package middleware
 
-import java.util.zip.Deflater
-
-import org.http4s.headers.{`Content-Type`, `Content-Length`, `Content-Encoding`, `Accept-Encoding`}
-import org.log4s.getLogger
-
 import scalaz.stream.Process._
-import scalaz.concurrent.Task
-import scalaz.Kleisli.kleisli
 
+import org.http4s.headers.{`Accept-Encoding`, `Content-Encoding`, `Content-Length`, `Content-Type`}
+import org.log4s.getLogger
 import scodec.bits.ByteVector
+
+import java.util.zip.Deflater
 
 object GZip {
   private[this] val logger = getLogger

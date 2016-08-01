@@ -1,12 +1,12 @@
 package org.http4s.server.middleware
 
+import scalaz.stream.Process._
+import scalaz.stream.{Process1, process1}
+
 import org.http4s._
-import org.http4s.server._
 import scodec.bits.ByteVector
 
 import scala.util.control.NoStackTrace
-import scalaz.stream.{Process1, process1}
-import scalaz.stream.Process._
 
 object EntityLimiter {
 

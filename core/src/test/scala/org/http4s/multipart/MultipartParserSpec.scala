@@ -1,12 +1,11 @@
 package org.http4s
 package multipart
 
-import org.http4s.headers._
-import org.specs2.mutable._
-
-import scalaz.{-\/, \/-, \/}
+import scalaz.{-\/, \/, \/-}
 import scalaz.stream.{Process, Process0}
 
+import org.http4s.headers._
+import org.specs2.mutable._
 import scodec.bits.ByteVector
 
 object MultipartParserSpec extends Specification {

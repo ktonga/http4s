@@ -3,7 +3,7 @@ package parser
 
 import org.http4s.headers.`WWW-Authenticate`
 import org.specs2.mutable.Specification
-import scalaz.Validation
+
 import scala.Predef._
 
 class WwwAuthenticateHeaderSpec extends Specification with HeaderParserHelper[`WWW-Authenticate`] {

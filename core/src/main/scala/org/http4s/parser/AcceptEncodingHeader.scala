@@ -18,10 +18,10 @@
 package org.http4s
 package parser
 
-import org.parboiled2._
-import ContentCoding._
+import org.http4s.ContentCoding._
 import org.http4s.headers.`Accept-Encoding`
 import org.http4s.util.CaseInsensitiveString
+import org.parboiled2._
 
 private[parser] trait AcceptEncodingHeader {
 

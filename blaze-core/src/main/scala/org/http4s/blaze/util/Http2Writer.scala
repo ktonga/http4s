@@ -2,9 +2,8 @@ package org.http4s.blaze.util
 
 
 import org.http4s.blaze.http.Headers
-import org.http4s.blaze.pipeline.TailStage
 import org.http4s.blaze.http.http20.NodeMsg._
-
+import org.http4s.blaze.pipeline.TailStage
 import scodec.bits.ByteVector
 
 import scala.concurrent.{ExecutionContext, Future}

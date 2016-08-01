@@ -2,24 +2,23 @@ package org.http4s
 package server
 package tomcat
 
-import java.net.InetSocketAddress
-import java.util.EnumSet
-import javax.servlet.{Filter, DispatcherType, ServletContext, ServletContainerInitializer}
-import javax.servlet.http.HttpServlet
-import java.util.concurrent.ExecutorService
-
-import com.codahale.metrics.{InstrumentedExecutorService, MetricRegistry}
-import com.codahale.metrics.servlet.{AbstractInstrumentedFilter, InstrumentedFilter}
-import org.apache.tomcat.util.descriptor.web.{FilterMap, FilterDef}
-import org.http4s.servlet.{ServletIo, ServletContainer, Http4sServlet}
-import org.http4s.server.SSLSupport.{SSLBits, StoreInfo}
-import org.http4s.servlet.{ServletContainer, Http4sServlet}
-
-import scala.collection.JavaConverters._
-import scala.concurrent.duration._
 import scalaz.concurrent.{Strategy, Task}
+
+import com.codahale.metrics.servlet.InstrumentedFilter
+import com.codahale.metrics.{InstrumentedExecutorService, MetricRegistry}
 import org.apache.catalina.startup.Tomcat
 import org.apache.catalina.{Context, Lifecycle, LifecycleEvent, LifecycleListener}
+import org.apache.tomcat.util.descriptor.web.{FilterDef, FilterMap}
+import org.http4s.server.SSLSupport.{SSLBits, StoreInfo}
+import org.http4s.servlet.{Http4sServlet, ServletContainer, ServletIo}
+
+import java.net.InetSocketAddress
+import java.util.EnumSet
+import java.util.concurrent.ExecutorService
+import javax.servlet.http.HttpServlet
+import javax.servlet.{DispatcherType, Filter}
+import scala.collection.JavaConverters._
+import scala.concurrent.duration._
 
 
 sealed class TomcatBuilder private (

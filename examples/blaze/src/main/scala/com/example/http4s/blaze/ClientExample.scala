@@ -5,8 +5,9 @@ object ClientExample {
   def getSite() = {
 
 /// code_ref: blaze_client_example
-    import org.http4s.Http4s._
     import scalaz.concurrent.Task
+
+    import org.http4s.Http4s._
 
     val client = org.http4s.client.blaze.SimpleHttp1Client()
 
@@ -17,10 +18,9 @@ object ClientExample {
 
     // We can do much more: how about decoding some JSON to a scala object
     // after matching based on the response status code?
+    import io.circe.generic.auto._
     import org.http4s.Status.NotFound
     import org.http4s.Status.ResponseClass.Successful
-    import io.circe._
-    import io.circe.generic.auto._
     import org.http4s.circe.jsonOf
 
     final case class Foo(bar: String)

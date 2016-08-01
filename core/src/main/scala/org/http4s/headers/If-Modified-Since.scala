@@ -1,10 +1,10 @@
 package org.http4s
 package headers
 
-import java.time.Instant
-
 import org.http4s.parser.HttpHeaderParser
 import org.http4s.util.{Renderer, Writer}
+
+import java.time.Instant
 
 object `If-Modified-Since` extends HeaderKey.Internal[`If-Modified-Since`] with HeaderKey.Singleton {
   override def parse(s: String): ParseResult[`If-Modified-Since`] =

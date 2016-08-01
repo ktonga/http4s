@@ -1,7 +1,7 @@
 package org.http4s.parser
 
-import org.http4s.{Http4sSpec, OAuth2BearerToken}
 import org.http4s.headers.Authorization
+import org.http4s.{Http4sSpec, OAuth2BearerToken}
 
 
 class AuthorizationHeaderSpec extends Http4sSpec {

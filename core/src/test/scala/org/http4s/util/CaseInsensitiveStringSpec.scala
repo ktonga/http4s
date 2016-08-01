@@ -1,10 +1,9 @@
 package org.http4s.util
 
-import java.util.Locale
-
 import org.http4s.Http4sSpec
-import org.scalacheck.{Prop, Arbitrary, Gen}
-import scalaz.scalacheck.ScalazProperties
+import org.scalacheck.{Arbitrary, Gen, Prop}
+
+import java.util.Locale
 
 class CaseInsensitiveStringSpec extends Http4sSpec {
   "equals" should {

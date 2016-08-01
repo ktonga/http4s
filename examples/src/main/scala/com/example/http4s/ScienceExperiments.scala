@@ -1,6 +1,11 @@
 package com.example.http4s
 
-import java.time.Instant
+import scalaz.{Monoid, Reducer}
+import scalaz.concurrent.Task
+import scalaz.stream.Process
+import scalaz.stream.Process._
+import scalaz.stream.text.utf8Encode
+import scalaz.stream.time.awakeEvery
 
 import org.http4s._
 import org.http4s.dsl._
@@ -8,14 +13,9 @@ import org.http4s.headers.Date
 import org.http4s.scalaxml._
 import scodec.bits.ByteVector
 
-import scala.xml.Elem
+import java.time.Instant
 import scala.concurrent.duration._
-import scalaz.{Reducer, Monoid}
-import scalaz.concurrent.Task
-import scalaz.stream.Process
-import scalaz.stream.Process._
-import scalaz.stream.text.utf8Encode
-import scalaz.stream.time.awakeEvery
+import scala.xml.Elem
 
 /** These are routes that we tend to use for testing purposes
   * and will likely get folded into unit tests later in life */

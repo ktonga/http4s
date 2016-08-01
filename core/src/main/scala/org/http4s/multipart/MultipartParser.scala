@@ -1,14 +1,13 @@
 package org.http4s
 package multipart
 
-import compat._
+import scalaz.{-\/, \/-}
+import scalaz.stream.{Process, Process1, Writer1, process1}
 
-import scala.language.postfixOps
-
+import org.http4s.compat._
 import scodec.bits.ByteVector
 
-import scalaz.{-\/, \/-, \/}
-import scalaz.stream.{process1, Process, Process1, Writer1}
+import scala.language.postfixOps
 
 /** A low-level multipart-parsing pipe.  Most end users will prefer EntityDecoder[Multipart]. */
 object MultipartParser {

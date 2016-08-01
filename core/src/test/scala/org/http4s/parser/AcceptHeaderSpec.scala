@@ -1,9 +1,9 @@
 package org.http4s
 package parser
 
+import org.http4s.MediaRange._
+import org.http4s.MediaType._
 import org.http4s.headers.{Accept, MediaRangeAndQValue}
-import MediaRange._
-import MediaType._
 import org.specs2.mutable.Specification
 
 class AcceptHeaderSpec extends Specification with HeaderParserHelper[Accept] with Http4s {

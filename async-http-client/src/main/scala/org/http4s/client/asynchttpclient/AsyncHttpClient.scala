@@ -2,28 +2,22 @@ package org.http4s
 package client
 package asynchttpclient
 
-import compat._
-
-import java.util.concurrent.{Callable, Executors, ExecutorService}
+import scalaz.concurrent.Task
+import scalaz.stream.io._
 
 import org.asynchttpclient.AsyncHandler.State
-import org.asynchttpclient.request.body.generator.{InputStreamBodyGenerator, BodyGenerator}
-import org.asynchttpclient.{Request => AsyncRequest, Response => _, _}
 import org.asynchttpclient.handler.StreamedAsyncHandler
+import org.asynchttpclient.request.body.generator.{BodyGenerator, InputStreamBodyGenerator}
+import org.asynchttpclient.{Request => AsyncRequest, Response => _, _}
 import org.http4s.client.impl.DefaultExecutor
-
+import org.http4s.compat._
 import org.http4s.util.threads._
-
+import org.log4s.getLogger
 import org.reactivestreams.Publisher
 import scodec.bits.ByteVector
 
+import java.util.concurrent.ExecutorService
 import scala.collection.JavaConverters._
-
-import scalaz.{-\/, \/-}
-import scalaz.stream.io._
-import scalaz.concurrent.Task
-
-import org.log4s.getLogger
 
 object AsyncHttpClient {
   private[this] val log = getLogger

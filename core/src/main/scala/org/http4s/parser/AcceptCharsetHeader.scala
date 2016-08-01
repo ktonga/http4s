@@ -18,8 +18,8 @@
 package org.http4s
 package parser
 
+import org.http4s.CharsetRange._
 import org.parboiled2._
-import CharsetRange._
 
 
 private[parser] trait AcceptCharsetHeader {

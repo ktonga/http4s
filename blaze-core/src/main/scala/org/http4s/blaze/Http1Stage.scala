@@ -1,28 +1,25 @@
 package org.http4s
 package blaze
 
-import compat._
+import scalaz.concurrent.Task
+import scalaz.stream.Cause.{End, Terminated}
+import scalaz.stream.Process._
+
+import org.http4s.blaze.http.http_parser.BaseExceptions.ParserException
+import org.http4s.blaze.pipeline.{Command, TailStage}
+import org.http4s.blaze.util.BufferTools.emptyBuffer
+import org.http4s.blaze.util._
+import org.http4s.compat._
+import org.http4s.headers.{`Content-Length`, `Transfer-Encoding`}
+import org.http4s.util.{StringWriter, Writer}
+import org.http4s.{headers => H}
+import scodec.bits.ByteVector
 
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.time.Instant
-
-import org.http4s.headers.{`Transfer-Encoding`, `Content-Length`}
-import org.http4s.{headers => H}
-import org.http4s.blaze.util.BufferTools.{concatBuffers, emptyBuffer}
-import org.http4s.blaze.http.http_parser.BaseExceptions.ParserException
-import org.http4s.blaze.pipeline.{Command, TailStage}
-import org.http4s.blaze.util._
-import org.http4s.util.{Writer, StringWriter}
-import scodec.bits.ByteVector
-
-import scala.concurrent.{Future, ExecutionContext, Promise}
+import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
-
-import scalaz.stream.Process._
-import scalaz.stream.Cause.{Terminated, End}
-import scalaz.{-\/, \/-}
-import scalaz.concurrent.Task
 
 /** Utility bits for dealing with the HTTP 1.x protocol */
 trait Http1Stage { self: TailStage[ByteBuffer] =>

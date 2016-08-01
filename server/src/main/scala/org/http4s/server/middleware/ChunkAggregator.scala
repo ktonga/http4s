@@ -2,12 +2,13 @@ package org.http4s
 package server
 package middleware
 
-import scalaz.stream.Process._
 import scalaz.stream.Cause.End
-import scala.annotation.tailrec
+import scalaz.stream.Process._
+
 import org.http4s.headers.`Content-Length`
 import scodec.bits.ByteVector
-import scalaz.Kleisli._
+
+import scala.annotation.tailrec
 
 object ChunkAggregator {
 

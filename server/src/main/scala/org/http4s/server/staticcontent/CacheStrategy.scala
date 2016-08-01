@@ -1,8 +1,8 @@
 package org.http4s.server.staticcontent
 
-import org.http4s._
-
 import scalaz.concurrent.Task
+
+import org.http4s._
 
 
 /** Cache the body of a [[Response]] for future use

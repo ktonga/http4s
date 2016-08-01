@@ -1,11 +1,10 @@
 package org.http4s
 
-import org.http4s.util.NonEmptyList
+import org.http4s.util.{CaseInsensitiveString, NonEmptyList}
+import org.http4s.util.string._
 
 import scala.annotation.tailrec
 import scala.reflect.ClassTag
-import org.http4s.util.CaseInsensitiveString
-import org.http4s.util.string._
 
 sealed trait HeaderKey {
   type HeaderT <: Header

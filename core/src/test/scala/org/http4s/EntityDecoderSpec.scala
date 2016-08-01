@@ -1,20 +1,17 @@
 package org.http4s
 
-import compat._
-
-import org.http4s.Status.Ok
-import org.specs2.concurrent.ExecutionEnv
-import org.specs2.execute.PendingUntilFixed
-import scodec.bits.ByteVector
-import org.http4s.headers.`Content-Type`
-
-import java.io.{FileInputStream,File,InputStreamReader}
-
-import scala.language.postfixOps
-import scala.util.control.NonFatal
-import scalaz.{-\/, \/-}
 import scalaz.concurrent.Task
 import scalaz.stream.Process._
+
+import org.http4s.Status.Ok
+import org.http4s.compat._
+import org.http4s.headers.`Content-Type`
+import org.specs2.execute.PendingUntilFixed
+import scodec.bits.ByteVector
+
+import java.io.{File, FileInputStream, InputStreamReader}
+import scala.language.postfixOps
+import scala.util.control.NonFatal
 
 
 class EntityDecoderSpec extends Http4sSpec with PendingUntilFixed {

@@ -3,18 +3,16 @@ package server
 package middleware
 package authentication
 
-import compat._
+import scalaz._
+import scalaz.concurrent.Task
 
-import java.security.SecureRandom
-import java.math.BigInteger
-import java.util.Date
-
+import org.http4s.compat._
 import org.http4s.headers.Authorization
 
+import java.math.BigInteger
+import java.security.SecureRandom
+import java.util.Date
 import scala.concurrent.duration._
-
-import scalaz.concurrent.Task
-import scalaz._
 
 /**
  * Provides Digest Authentication from RFC 2617. Note that this class creates a new thread

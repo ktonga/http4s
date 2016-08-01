@@ -1,14 +1,14 @@
 package org.http4s
 package server
 
-import java.net.{InetAddress, InetSocketAddress}
-import java.util.concurrent.ExecutorService
+import scalaz.concurrent.{Strategy, Task}
 
 import com.codahale.metrics.MetricRegistry
 import org.http4s.server.SSLSupport.StoreInfo
 
+import java.net.{InetAddress, InetSocketAddress}
+import java.util.concurrent.ExecutorService
 import scala.concurrent.duration._
-import scalaz.concurrent.{Strategy, Task}
 
 trait ServerBuilder {
   import ServerBuilder._

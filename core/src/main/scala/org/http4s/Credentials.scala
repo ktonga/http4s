@@ -18,10 +18,10 @@
  */
 package org.http4s
 
+import org.http4s.util.{Renderable, Writer}
+
 import java.nio.charset.StandardCharsets
 import java.util.Base64
-
-import org.http4s.util.{Renderable, Writer}
 
 sealed abstract class Credentials extends Renderable {
   def authScheme: AuthScheme

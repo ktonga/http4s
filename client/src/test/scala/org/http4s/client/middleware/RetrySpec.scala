@@ -2,14 +2,13 @@ package org.http4s
 package client
 package middleware
 
-import org.http4s.Status._
-import org.http4s.Method._
-import org.http4s.headers.Location
-
 import scalaz.concurrent.Task
 
-import scala.language.postfixOps
+import org.http4s.Method._
+import org.http4s.Status._
+
 import scala.concurrent.duration._
+import scala.language.postfixOps
 
 class RetrySpec extends Http4sSpec {
 

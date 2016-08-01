@@ -1,17 +1,12 @@
 package org.http4s
 package client
 
-import org.http4s.Http4sSpec
-import org.http4s.headers.Accept
-import org.http4s.Status.InternalServerError
-
-import scalaz.-\/
 import scalaz.concurrent.Task
 import scalaz.stream.Process
 
-import org.http4s.Status.{Ok, NotFound, Created, BadRequest}
 import org.http4s.Method._
-
+import org.http4s.Status.{BadRequest, Created, InternalServerError, Ok}
+import org.http4s.headers.Accept
 import org.specs2.matcher.MustThrownMatchers
 
 class ClientSyntaxSpec extends Http4sSpec with MustThrownMatchers {

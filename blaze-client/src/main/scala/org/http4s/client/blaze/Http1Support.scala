@@ -2,21 +2,20 @@ package org.http4s
 package client
 package blaze
 
-import java.net.InetSocketAddress
-import java.nio.ByteBuffer
-import java.util.concurrent.ExecutorService
+import scalaz.{-\/, \/, \/-}
+import scalaz.concurrent.Task
 
 import org.http4s.Uri.Scheme
 import org.http4s.blaze.channel.nio2.ClientChannelFactory
-import org.http4s.util.task
 import org.http4s.blaze.pipeline.LeafBuilder
 import org.http4s.blaze.pipeline.stages.SSLStage
 import org.http4s.util.CaseInsensitiveString._
+import org.http4s.util.task
 
-import scala.concurrent.ExecutionContext
-import scala.concurrent.Future
-import scalaz.concurrent.Task
-import scalaz.{-\/, \/, \/-}
+import java.net.InetSocketAddress
+import java.nio.ByteBuffer
+import java.util.concurrent.ExecutorService
+import scala.concurrent.{ExecutionContext, Future}
 
 private object Http1Support {
   /** Create a new [[ConnectionBuilder]]

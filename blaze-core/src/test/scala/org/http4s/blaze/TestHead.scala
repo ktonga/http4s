@@ -1,13 +1,12 @@
 package org.http4s.blaze
 
+import org.http4s.blaze.pipeline.Command.{Disconnect, Disconnected, EOF, OutboundCommand}
 import org.http4s.blaze.pipeline.HeadStage
-import org.http4s.blaze.pipeline.Command.{Disconnected, Disconnect, OutboundCommand, EOF}
 
 import java.nio.ByteBuffer
-
 import scala.concurrent.duration.Duration
-import scala.concurrent.{ Promise, Future }
-import scala.util.{Success, Failure, Try}
+import scala.concurrent.{Future, Promise}
+import scala.util.{Failure, Success, Try}
 
 
 abstract class TestHead(val name: String) extends HeadStage[ByteBuffer] {

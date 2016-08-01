@@ -1,14 +1,12 @@
 package org.http4s
 package blaze
 
-import http.http_parser.Http1ClientParser
-import org.http4s.Status
-import scala.collection.mutable.ListBuffer
-import java.nio.ByteBuffer
-
-
-import java.nio.charset.StandardCharsets
+import org.http4s.blaze.http.http_parser.Http1ClientParser
 import scodec.bits.ByteVector
+
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
+import scala.collection.mutable.ListBuffer
 
 class ResponseParser extends Http1ClientParser {
 

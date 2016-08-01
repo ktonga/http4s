@@ -1,8 +1,6 @@
 package com.example.http4s
 package jetty
 
-import javax.servlet._
-
 import com.codahale.metrics.MetricRegistry
 import com.codahale.metrics.servlets.MetricsServlet
 import org.http4s.server.ServerApp

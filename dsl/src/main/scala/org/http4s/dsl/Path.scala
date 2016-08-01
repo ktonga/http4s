@@ -8,13 +8,13 @@
 package org.http4s
 package dsl
 
-import compat._
+import scalaz.ValidationNel
 
 import org.http4s.QueryParamDecoder
+import org.http4s.compat._
 import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
-import scalaz.ValidationNel
-import collection.immutable.BitSet
+import scala.collection.immutable.BitSet
 import scala.util.Try
 
 /** Base class for path extractors. */

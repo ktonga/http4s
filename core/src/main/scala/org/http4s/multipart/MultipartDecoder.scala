@@ -1,25 +1,14 @@
 package org.http4s
 package multipart
 
-import compat._
-
-import scala.util.{Try, Success, Failure}
-import scala.util.control._
-import org.http4s._
-import parser._
-import headers._
-import Http4s._
-import org.http4s.util._
-import scalaz.concurrent._
-import scalaz.concurrent.Task._
-
-import scodec.bits.ByteVector
 import scalaz._
-import Scalaz._
-import scalaz.stream._
+import scalaz.concurrent.Task._
 import scalaz.stream.Process._
-import org.parboiled2._
+import scalaz.stream._
+
+import org.http4s.compat._
 import org.log4s.getLogger
+import scodec.bits.ByteVector
 
 private[http4s] object MultipartDecoder {
 

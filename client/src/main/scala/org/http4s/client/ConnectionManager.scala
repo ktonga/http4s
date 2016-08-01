@@ -1,9 +1,9 @@
 package org.http4s
 package client
 
-import java.util.concurrent.ExecutorService
-
 import scalaz.concurrent.Task
+
+import java.util.concurrent.ExecutorService
 
 /** Type that is responsible for the client lifecycle
   *

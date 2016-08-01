@@ -1,17 +1,16 @@
 package org.http4s.client.blaze
 
+import org.http4s.blaze.pipeline.Command.{Disconnect, EOF, Error, OutboundCommand}
+import org.http4s.blaze.pipeline.MidStage
+import org.http4s.blaze.util.{Cancellable, TickWheelExecutor}
+
 import java.nio.ByteBuffer
 import java.util.concurrent.TimeoutException
 import java.util.concurrent.atomic.AtomicReference
-
 import scala.annotation.tailrec
-import scala.concurrent.{Promise, Future}
 import scala.concurrent.duration.Duration
+import scala.concurrent.{Future, Promise}
 import scala.util.{Failure, Success}
-
-import org.http4s.blaze.pipeline.MidStage
-import org.http4s.blaze.pipeline.Command.{Error, OutboundCommand, EOF, Disconnect}
-import org.http4s.blaze.util.{ Cancellable, TickWheelExecutor }
 
 
 final private class ClientTimeoutStage(idleTimeout: Duration, requestTimeout: Duration, exec: TickWheelExecutor)

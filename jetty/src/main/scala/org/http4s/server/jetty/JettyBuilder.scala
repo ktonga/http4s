@@ -2,28 +2,25 @@ package org.http4s
 package server
 package jetty
 
-import java.util
-import javax.servlet.{DispatcherType, Filter}
-
-import com.codahale.metrics.{InstrumentedExecutorService, MetricRegistry}
-import com.codahale.metrics.jetty9.InstrumentedQueuedThreadPool
-import org.eclipse.jetty.util.ssl.SslContextFactory
-import org.eclipse.jetty.util.thread.QueuedThreadPool
-import org.http4s.server.SSLSupport.{StoreInfo, SSLBits}
-
-import java.net.InetSocketAddress
-import java.util.concurrent.ExecutorService
-import javax.servlet.http.HttpServlet
-import org.eclipse.jetty.server.ServerConnector
-import org.http4s.servlet.{ServletIo, ServletContainer, Http4sServlet}
-
-import scala.concurrent.duration._
 import scalaz.concurrent.Task
 
+import com.codahale.metrics.jetty9.InstrumentedQueuedThreadPool
+import com.codahale.metrics.{InstrumentedExecutorService, MetricRegistry}
+import org.eclipse.jetty.server.{ServerConnector, Server => JServer, _}
+import org.eclipse.jetty.servlet.{FilterHolder, ServletContextHandler, ServletHolder}
 import org.eclipse.jetty.util.component.AbstractLifeCycle.AbstractLifeCycleListener
 import org.eclipse.jetty.util.component.LifeCycle
-import org.eclipse.jetty.server.{Server => JServer, _}
-import org.eclipse.jetty.servlet.{FilterHolder, ServletHolder, ServletContextHandler}
+import org.eclipse.jetty.util.ssl.SslContextFactory
+import org.eclipse.jetty.util.thread.QueuedThreadPool
+import org.http4s.server.SSLSupport.{SSLBits, StoreInfo}
+import org.http4s.servlet.{Http4sServlet, ServletContainer, ServletIo}
+
+import java.net.InetSocketAddress
+import java.util
+import java.util.concurrent.ExecutorService
+import javax.servlet.http.HttpServlet
+import javax.servlet.{DispatcherType, Filter}
+import scala.concurrent.duration._
 
 sealed class JettyBuilder private (
   socketAddress: InetSocketAddress,

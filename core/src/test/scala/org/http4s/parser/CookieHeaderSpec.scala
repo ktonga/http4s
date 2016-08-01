@@ -1,9 +1,8 @@
 package org.http4s
 package parser
 
-import org.http4s.headers.{`Set-Cookie`}
+import org.http4s.headers.`Set-Cookie`
 import org.specs2.mutable.Specification
-import scalaz.Validation
 
 class SetCookieHeaderSpec extends Specification with HeaderParserHelper[`Set-Cookie`] {
   def hparse(value: String): ParseResult[`Set-Cookie`] = HttpHeaderParser.SET_COOKIE(value)

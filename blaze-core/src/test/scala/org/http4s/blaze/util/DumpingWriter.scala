@@ -6,9 +6,6 @@ import scodec.bits.ByteVector
 
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.{ExecutionContext, Future}
-import scalaz.concurrent.Task
-
-import scalaz.stream.Process
 
 object DumpingWriter {
   def dump(p: EntityBody): ByteVector = {

@@ -1,12 +1,13 @@
 package org.http4s
 package scalaxml
 
-import java.io.StringReader
+import scalaz.concurrent.Task
 
-import headers.`Content-Type`
+import org.http4s.headers.`Content-Type`
+
+import java.io.StringReader
 import scala.util.control.NonFatal
 import scala.xml._
-import scalaz.concurrent.Task
 
 trait ElemInstances {
   implicit def xmlEnocder(implicit charset: Charset = DefaultCharset): EntityEncoder[Elem] =

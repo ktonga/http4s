@@ -1,19 +1,13 @@
 package org.http4s
 package multipart
 
-import scala.util.Random
+import scalaz.concurrent.Task
+import scalaz.stream.Process
 
-import org.http4s._
-import org.http4s.MediaType._
-import org.http4s.headers.{ `Content-Type` ⇒ ContentType, `Content-Disposition` => ContentDisposition }
-import org.http4s.Http4s._
-import org.http4s.Uri._
+import org.http4s.EntityEncoder._
+import org.http4s.headers.{`Content-Disposition` => ContentDisposition, `Content-Type` => ContentType}
 import org.http4s.util._
 import scodec.bits.ByteVector
-import org.http4s.EntityEncoder._
-import scalaz.concurrent.Task
-import Entity._
-import scalaz.stream.Process
 
 private[http4s] object MultipartEncoder extends EntityEncoder[Multipart] {
 

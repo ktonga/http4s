@@ -1,12 +1,11 @@
 package org.http4s
 
-import org.http4s.HeaderKey.StringKey
-import org.http4s.util.CaseInsensitiveString
 import org.http4s.headers.`Set-Cookie`
+import org.http4s.util.CaseInsensitiveString
 
-import scala.collection.{GenTraversableOnce, immutable, mutable}
 import scala.collection.generic.CanBuildFrom
 import scala.collection.mutable.ListBuffer
+import scala.collection.{GenTraversableOnce, immutable, mutable}
 
 
 /** A collection of HTTP Headers */

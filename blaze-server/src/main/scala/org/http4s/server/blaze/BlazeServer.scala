@@ -2,26 +2,24 @@ package org.http4s
 package server
 package blaze
 
-import java.io.FileInputStream
-import java.security.KeyStore
-import java.security.Security
-import javax.net.ssl.{TrustManagerFactory, KeyManagerFactory, SSLContext}
-import java.util.concurrent.ExecutorService
-import java.net.InetSocketAddress
-import java.nio.ByteBuffer
+import scalaz.concurrent.{Strategy, Task}
 
 import org.http4s.blaze.channel
-import org.http4s.blaze.pipeline.LeafBuilder
-import org.http4s.blaze.pipeline.stages.{SSLStage, QuietTimeoutStage}
 import org.http4s.blaze.channel.SocketConnection
 import org.http4s.blaze.channel.nio1.NIO1SocketServerGroup
 import org.http4s.blaze.channel.nio2.NIO2SocketServerGroup
-import org.http4s.server.SSLSupport.{StoreInfo, SSLBits}
-
+import org.http4s.blaze.pipeline.LeafBuilder
+import org.http4s.blaze.pipeline.stages.{QuietTimeoutStage, SSLStage}
+import org.http4s.server.SSLSupport.{SSLBits, StoreInfo}
 import org.log4s.getLogger
 
+import java.io.FileInputStream
+import java.net.InetSocketAddress
+import java.nio.ByteBuffer
+import java.security.{KeyStore, Security}
+import java.util.concurrent.ExecutorService
+import javax.net.ssl.{KeyManagerFactory, SSLContext, TrustManagerFactory}
 import scala.concurrent.duration._
-import scalaz.concurrent.{Strategy, Task}
 
 class BlazeBuilder(
   socketAddress: InetSocketAddress,

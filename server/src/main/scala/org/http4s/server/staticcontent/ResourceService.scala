@@ -2,12 +2,9 @@ package org.http4s
 package server
 package staticcontent
 
+import scalaz.concurrent.Strategy
+
 import java.util.concurrent.ExecutorService
-
-import org.http4s.server._
-import org.http4s.{Response, Request, StaticFile}
-
-import scalaz.concurrent.{Strategy, Task}
 
 
 object ResourceService {

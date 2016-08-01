@@ -2,19 +2,18 @@ package org.http4s
 package client
 package blaze
 
-import java.nio.ByteBuffer
-import java.nio.charset.StandardCharsets
+import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
+import scalaz.concurrent.{Strategy, Task}
+import scalaz.stream.time
 
-import org.http4s.blaze.{SeqTestHead, SlowTestHead}
 import org.http4s.blaze.pipeline.HeadStage
+import org.http4s.blaze.{SeqTestHead, SlowTestHead}
 import scodec.bits.ByteVector
 
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
 import scala.concurrent.TimeoutException
 import scala.concurrent.duration._
-import scalaz.concurrent.{Strategy, Task}
-import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
-import scalaz.stream.Process
-import scalaz.stream.time
 
 class ClientTimeoutSpec extends Http4sSpec {
 

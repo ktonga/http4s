@@ -1,6 +1,6 @@
 package org.http4s.parser
 
-import org.http4s.{Header, Challenge}
+import org.http4s.{Challenge, Header}
 import org.parboiled2._
 
 abstract private[parser] class ChallengeParser[H <: Header](input: ParserInput) extends Http4sHeaderParser[H](input) {

@@ -1,16 +1,14 @@
 package org.http4s
 
-import java.nio.charset.StandardCharsets
+import org.http4s.Uri._
+import org.http4s.parser.{RequestUriParser, ScalazDeliverySchemes}
+import org.http4s.util.option.ToOptionOps
+import org.http4s.util.string.ToCaseInsensitiveStringSyntax
+import org.http4s.util.{CaseInsensitiveString, Renderable, UrlCodingUtils, Writer}
 
+import java.nio.charset.StandardCharsets
 import scala.language.experimental.macros
 import scala.reflect.macros.Context
-
-import org.http4s.Uri._
-
-import org.http4s.parser.{ ScalazDeliverySchemes, RequestUriParser }
-import org.http4s.util.{ Writer, Renderable, CaseInsensitiveString, UrlCodingUtils, UrlFormCodec }
-import org.http4s.util.string.ToCaseInsensitiveStringSyntax
-import org.http4s.util.option.ToOptionOps
 
 
 /** Representation of the [[Request]] URI

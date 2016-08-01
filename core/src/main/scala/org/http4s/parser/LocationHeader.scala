@@ -1,10 +1,10 @@
 package org.http4s.parser
 
-import java.nio.charset.StandardCharsets
-
-import org.http4s.headers.Location
 import org.http4s._
+import org.http4s.headers.Location
 import org.parboiled2._
+
+import java.nio.charset.StandardCharsets
 
 trait LocationHeader {
 

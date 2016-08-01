@@ -1,8 +1,9 @@
 package org.http4s
 package bench
 
-import java.util.concurrent.TimeUnit
 import org.openjdk.jmh.annotations._
+
+import java.util.concurrent.TimeUnit
 
 @BenchmarkMode(Array(Mode.AverageTime))
 @OutputTimeUnit(TimeUnit.MICROSECONDS)

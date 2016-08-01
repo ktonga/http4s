@@ -5,9 +5,8 @@
  */
 package org.http4s.util
 
-import java.util.{List => JList, Collections, ArrayDeque, Deque}
-import java.util.concurrent.{TimeUnit, AbstractExecutorService}
-
+import java.util.concurrent.{AbstractExecutorService, TimeUnit}
+import java.util.{ArrayDeque, Collections, Deque, List => JList}
 import scala.concurrent.ExecutionContextExecutorService
 
 object TrampolineExecutionContext extends AbstractExecutorService with ExecutionContextExecutorService {

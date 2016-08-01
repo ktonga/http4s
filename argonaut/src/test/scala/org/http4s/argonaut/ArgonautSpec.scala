@@ -1,15 +1,14 @@
 package org.http4s
 package argonaut
 
-import java.nio.charset.StandardCharsets
-
 import _root_.argonaut._
-import org.http4s.MediaType._
+import org.http4s.EntityEncoderSpec.writeToString
+import org.http4s.Status.Ok
 import org.http4s.headers.`Content-Type`
 import org.http4s.jawn.JawnDecodeSupportSpec
-import org.http4s.EntityEncoderSpec.writeToString
 import org.specs2.specification.core.Fragment
-import Status.Ok
+
+import java.nio.charset.StandardCharsets
 
 class ArgonautSpec extends JawnDecodeSupportSpec[Json] with Argonauts {
   testJsonDecoder(jsonDecoder)

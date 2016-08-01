@@ -1,12 +1,11 @@
 package org.http4s.parser
 
-import java.nio.charset.{Charset => NioCharset, StandardCharsets}
-
 import org.http4s.Uri._
 import org.http4s._
-
-import scala.util.Success
 import org.parboiled2._
+
+import java.nio.charset.{StandardCharsets, Charset => NioCharset}
+import scala.util.Success
 
 class IpParser(val input: ParserInput, val charset: NioCharset) extends Parser with Rfc3986Parser {
   def CaptureIPv6: Rule1[String] = rule { capture(IpV6Address) }

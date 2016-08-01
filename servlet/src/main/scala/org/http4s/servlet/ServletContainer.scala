@@ -1,11 +1,11 @@
 package org.http4s
 package servlet
 
-import java.util.EnumSet
-import javax.servlet.{DispatcherType, Filter}
-import javax.servlet.http.HttpServlet
-
 import org.http4s.server.{AsyncTimeoutSupport, ServerBuilder}
+
+import java.util.EnumSet
+import javax.servlet.http.HttpServlet
+import javax.servlet.{DispatcherType, Filter}
 
 trait ServletContainer
   extends ServerBuilder

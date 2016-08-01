@@ -1,15 +1,14 @@
 package org.http4s
 package util
 
-import java.nio.charset.StandardCharsets
-
-import org.specs2.ScalaCheck
-
 import scalaz.stream.Process._
 import scalaz.stream.text.utf8Decode
-import scodec.bits._
 
 import org.http4s.util.byteVector._
+import org.specs2.ScalaCheck
+import scodec.bits._
+
+import java.nio.charset.StandardCharsets
 
 class DecodeSpec extends Http4sSpec with ScalaCheck {
   "decode" should {

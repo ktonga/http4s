@@ -1,7 +1,6 @@
 package org.http4s.parser
 
-import org.http4s.{ParseResult, Header}
-import scalaz.Validation
+import org.http4s.{Header, ParseResult}
 
 trait HeaderParserHelper[H <: Header] {
 

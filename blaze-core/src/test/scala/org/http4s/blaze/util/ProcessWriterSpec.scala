@@ -2,28 +2,20 @@ package org.http4s
 package blaze
 package util
 
-import compat._
+import scalaz.concurrent.Task
+import scalaz.stream.{Cause, Process}
 
-import java.nio.ByteBuffer
-import java.nio.charset.StandardCharsets
-
-import org.http4s.Headers
-import org.http4s.blaze.TestHead
 import org.http4s.blaze.pipeline.{LeafBuilder, TailStage}
+import org.http4s.compat._
 import org.http4s.util.StringWriter
 import org.specs2.mutable.Specification
 import scodec.bits.ByteVector
 
-import scala.concurrent.Future
-import scala.concurrent.Await
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
+import scala.concurrent.{Await, Future}
 import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
-import scalaz.{-\/, \/-}
-
-import scalaz.concurrent.Task
-import scalaz.stream.{Cause, Process}
-
-
 
 class ProcessWriterSpec extends Specification {
 
@@ -52,7 +44,6 @@ class ProcessWriterSpec extends Specification {
   def runNonChunkedTests(builder: TailStage[ByteBuffer] => ProcessWriter) = {
     import scalaz.stream.Process
     import scalaz.stream.Process._
-    import scalaz.stream.Cause.End
 
     "Write a single emit" in {
       writeProcess(emit(messageBuffer))(builder) must_== "Content-Length: 12\r\n\r\n" + message
@@ -114,8 +105,8 @@ class ProcessWriterSpec extends Specification {
   }
 
   "ChunkProcessWriter" should {
-    import scalaz.stream.Process._
     import scalaz.stream.Cause.End
+    import scalaz.stream.Process._
 
     def builder(tail: TailStage[ByteBuffer]) =
       new ChunkProcessWriter(new StringWriter(), tail, Task.now(Headers()))

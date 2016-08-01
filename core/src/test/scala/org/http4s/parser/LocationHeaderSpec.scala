@@ -1,10 +1,9 @@
 package org.http4s
 package parser
 
-import org.http4s.{Headers, Header, Http4sSpec, Uri}
-import headers.Location
-
 import scalaz.\/-
+
+import org.http4s.headers.Location
 
 // TODO: this could use more tests
 class LocationHeaderSpec extends Http4sSpec {

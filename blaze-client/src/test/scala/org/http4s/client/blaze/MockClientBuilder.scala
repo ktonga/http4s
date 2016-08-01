@@ -2,11 +2,11 @@ package org.http4s
 package client
 package blaze
 
-import java.nio.ByteBuffer
-
-import org.http4s.blaze.pipeline.{LeafBuilder, HeadStage}
-
 import scalaz.concurrent.Task
+
+import org.http4s.blaze.pipeline.{HeadStage, LeafBuilder}
+
+import java.nio.ByteBuffer
 
 private object MockClientBuilder {
   def builder(head: => HeadStage[ByteBuffer], tail: => BlazeConnection): ConnectionBuilder[BlazeConnection] = {

@@ -3,7 +3,7 @@ package server
 package middleware
 
 import scalaz.concurrent.Task
-import scalaz.Kleisli.kleisli
+
 import org.log4s.getLogger
 
 object PushSupport {

@@ -9,20 +9,21 @@
 
 package org.http4s
 
+import scalaz.std.AllInstances
+import scalaz.{-\/, \/-}
+import scalaz.concurrent.Task
+
+import org.scalacheck._
+import org.scalacheck.util.{FreqMap, Pretty}
 import org.specs2.ScalaCheck
 import org.specs2.execute.AsResult
-import org.specs2.scalacheck.Parameters
 import org.specs2.matcher._
 import org.specs2.mutable.Specification
-import org.specs2.specification.dsl.FragmentsDsl
-import org.specs2.specification.create.{DefaultFragmentFactory=>ff}
+import org.specs2.scalacheck.Parameters
 import org.specs2.specification.core.Fragments
-import org.scalacheck.util.{FreqMap, Pretty}
+import org.specs2.specification.create.{DefaultFragmentFactory => ff}
+import org.specs2.specification.dsl.FragmentsDsl
 import org.typelevel.discipline.Laws
-import scalaz.{ -\/, \/- }
-import scalaz.concurrent.Task
-import scalaz.std.AllInstances
-import org.scalacheck._
 
 /**
  * Common stack for http4s' own specs.

@@ -1,28 +1,23 @@
 package org.http4s.server
 package blaze
 
-import java.nio.ByteBuffer
-import java.nio.charset.StandardCharsets
-import java.time.Instant
+import scalaz.concurrent.{Strategy, Task}
 
-import org.http4s.headers.{`Transfer-Encoding`, Date, `Content-Length`}
-import org.http4s.{headers => H, _}
 import org.http4s.Status._
 import org.http4s.blaze._
 import org.http4s.blaze.pipeline.{Command => Cmd}
+import org.http4s.headers.{Date, `Content-Length`, `Transfer-Encoding`}
 import org.http4s.util.CaseInsensitiveString._
+import org.http4s.{headers => H, _}
 import org.specs2.mutable.Specification
 import org.specs2.specification.core.Fragment
 
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-
-import scalaz.concurrent.{Strategy, Task}
-import scalaz.stream.Process
-
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
+import java.time.Instant
 import scala.concurrent.ExecutionContext.Implicits.global
-
-import scodec.bits.ByteVector
+import scala.concurrent.duration._
+import scala.concurrent.{Await, Future}
 
 class Http1ServerStageSpec extends Specification {
   def makeString(b: ByteBuffer): String = {

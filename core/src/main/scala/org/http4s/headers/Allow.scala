@@ -2,9 +2,7 @@ package org.http4s
 package headers
 
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.Writer
-
-import org.http4s.util.NonEmptyList
+import org.http4s.util.{NonEmptyList, Writer}
 
 object Allow extends HeaderKey.Internal[Allow] with HeaderKey.Singleton {
   def apply(m: Method, ms: Method*): Allow = Allow(NonEmptyList(m, ms:_*))

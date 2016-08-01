@@ -1,13 +1,14 @@
 package org.http4s
 package client
 
-import org.http4s.headers.{Accept, MediaRangeAndQValue}
-import org.http4s.Status.ResponseClass.Successful
-import scala.util.control.NoStackTrace
-
 import scalaz.concurrent.Task
 import scalaz.stream.Process
 import scalaz.stream.Process.{eval, eval_}
+
+import org.http4s.Status.ResponseClass.Successful
+import org.http4s.headers.{Accept, MediaRangeAndQValue}
+
+import scala.util.control.NoStackTrace
 
 /**
   * Contains a [[Response]] that needs to be disposed of to free the underlying

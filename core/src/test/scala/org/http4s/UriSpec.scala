@@ -1,13 +1,10 @@
 package org.http4s
 
-import compat._
+import scalaz.Maybe
 
-import compat._
-
-import org.specs2.matcher.MustThrownMatchers
 import org.http4s.Uri._
-
-import scalaz.{-\/, Maybe}
+import org.http4s.compat._
+import org.specs2.matcher.MustThrownMatchers
 
 // TODO: this needs some more filling out
 class UriSpec extends Http4sSpec with MustThrownMatchers {

@@ -1,18 +1,15 @@
 package org.http4s
 
-import java.time.{ZonedDateTime, ZoneId, Instant}
-import java.time.temporal.ChronoUnit
-
-import org.http4s.headers.{Allow, Date, `Content-Length`, `Accept-Charset`}
+import org.http4s.headers.{Allow, Date, `Accept-Charset`, `Content-Length`}
 import org.http4s.util.NonEmptyList
 import org.http4s.util.string._
-
-import java.nio.charset.{Charset => NioCharset}
-
 import org.scalacheck.Arbitrary._
 import org.scalacheck.Gen._
 import org.scalacheck.{Arbitrary, Gen}
 
+import java.nio.charset.{Charset => NioCharset}
+import java.time.temporal.ChronoUnit
+import java.time.{Instant, ZoneId, ZonedDateTime}
 import scala.collection.JavaConverters._
 import scala.collection.immutable.BitSet
 

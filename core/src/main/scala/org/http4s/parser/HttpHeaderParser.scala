@@ -18,12 +18,11 @@
 package org.http4s
 package parser
 
-import java.util
-
+import org.http4s.Header.Parsed
 import org.http4s.util.CaseInsensitiveString
-
-import Header.Parsed
 import org.http4s.util.string._
+
+import java.util
 
 
 object HttpHeaderParser extends SimpleHeaders

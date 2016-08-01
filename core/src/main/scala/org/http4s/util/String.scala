@@ -1,9 +1,6 @@
 package org.http4s.util
 
 import java.util.regex.Pattern
-
-import org.http4s.Charset
-
 import scala.io.Codec
 
 trait StringOps {

@@ -3,27 +3,25 @@ package server
 package blaze
 
 
-import org.http4s.blaze.pipeline.Command.EOF
-import org.http4s.blaze.Http1Stage
-import org.http4s.blaze.pipeline.{Command => Cmd, TailStage}
-import org.http4s.blaze.util.BodylessWriter
-import org.http4s.blaze.util.Execution._
-import org.http4s.blaze.util.BufferTools.emptyBuffer
-import org.http4s.blaze.http.http_parser.BaseExceptions.{BadRequest, ParserException}
+import scalaz.{-\/, \/-}
+import scalaz.concurrent.Task
 
-import org.http4s.util.StringWriter
-import org.http4s.util.CaseInsensitiveString._
+import org.http4s.blaze.Http1Stage
+import org.http4s.blaze.http.http_parser.BaseExceptions.{BadRequest, ParserException}
+import org.http4s.blaze.pipeline.Command.EOF
+import org.http4s.blaze.pipeline.{TailStage, Command => Cmd}
+import org.http4s.blaze.util.BodylessWriter
+import org.http4s.blaze.util.BufferTools.emptyBuffer
+import org.http4s.blaze.util.Execution._
 import org.http4s.headers.{Connection, `Content-Length`, `Transfer-Encoding`}
+import org.http4s.util.CaseInsensitiveString._
+import org.http4s.util.StringWriter
 
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
-
-import scala.concurrent.{ ExecutionContext, Future }
-import scala.util.{Try, Success, Failure}
-
-import scalaz.concurrent.{Strategy, Task}
-import scalaz.{\/-, -\/}
 import java.util.concurrent.ExecutorService
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success, Try}
 
 
 private object Http1ServerStage {

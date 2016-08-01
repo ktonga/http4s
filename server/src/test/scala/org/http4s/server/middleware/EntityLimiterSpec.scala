@@ -2,14 +2,15 @@ package org.http4s
 package server
 package middleware
 
-import java.nio.charset.StandardCharsets
+import scalaz.stream.Process.emit
 
+import org.http4s.Method._
+import org.http4s.Status._
 import org.http4s.server.middleware.EntityLimiter.EntityTooLarge
 import org.specs2.mutable.Specification
 import scodec.bits.ByteVector
-import scalaz.stream.Process.emit
-import Method._
-import Status._
+
+import java.nio.charset.StandardCharsets
 
 class EntityLimiterSpec extends Specification {
   import Http4s._

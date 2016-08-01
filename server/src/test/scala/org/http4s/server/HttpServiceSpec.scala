@@ -1,7 +1,7 @@
 package org.http4s
 package server
 
-import syntax.ServiceOps
+import org.http4s.server.syntax.ServiceOps
 
 class HttpServiceSpec extends Http4sSpec {
 

@@ -1,7 +1,7 @@
 package org.http4s.server.middleware
 
-import org.http4s.{Status, Request, Http4sSpec}
 import org.http4s.server.MockRoute
+import org.http4s.{Http4sSpec, Request, Status}
 
 
 class AutoSlashSpec extends Http4sSpec {

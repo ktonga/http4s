@@ -1,12 +1,10 @@
 package org.http4s
 package headers
 
-import java.net.InetAddress
-
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.Writer
+import org.http4s.util.{NonEmptyList, Writer}
 
-import org.http4s.util.NonEmptyList
+import java.net.InetAddress
 
 object `X-Forwarded-For` extends HeaderKey.Internal[`X-Forwarded-For`] with HeaderKey.Recurring {
   override def parse(s: String): ParseResult[`X-Forwarded-For`] =

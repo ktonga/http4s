@@ -1,24 +1,23 @@
 package org.http4s
 
-import compat._
+import scalaz._
+import scalaz.concurrent.Task
+import scalaz.stream.Cause.{End, Terminated}
+import scalaz.stream.Process.emit
+import scalaz.stream.nio.file
+import scalaz.stream.{Channel, Process, Process0, io}
+
+import org.http4s.EntityEncoder._
+import org.http4s.compat._
+import org.http4s.headers.{`Content-Type`, `Transfer-Encoding`}
+import org.http4s.multipart.{Multipart, MultipartEncoder}
+import scodec.bits.ByteVector
 
 import java.io.{File, InputStream, Reader}
 import java.nio.ByteBuffer
 import java.nio.file.Path
-
 import scala.concurrent.{ExecutionContext, Future}
 import scala.language.implicitConversions
-
-import org.http4s.EntityEncoder._
-import org.http4s.headers.{`Transfer-Encoding`, `Content-Type`}
-import org.http4s.multipart.{Multipart, MultipartEncoder}
-import scalaz._
-import scalaz.concurrent.Task
-import scalaz.stream.{Process0, Channel, Process, io}
-import scalaz.stream.nio.file
-import scalaz.stream.Cause.{End, Terminated}
-import scalaz.stream.Process.emit
-import scodec.bits.ByteVector
 
 trait EntityEncoder[A] { self =>
 

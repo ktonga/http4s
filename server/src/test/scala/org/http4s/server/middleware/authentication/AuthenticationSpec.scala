@@ -3,15 +3,14 @@ package server
 package middleware
 package authentication
 
-import java.util.concurrent.Executors
+import scalaz.concurrent.Task
 
 import org.http4s.Status._
 import org.http4s.headers._
 import org.http4s.parser.HttpHeaderParser
 import org.http4s.util.CaseInsensitiveString
 
-import scalaz.concurrent.Task
-
+import java.util.concurrent.Executors
 import scala.concurrent.duration._
 
 class AuthenticationSpec extends Http4sSpec {

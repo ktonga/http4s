@@ -1,9 +1,10 @@
 package org.http4s.client.asynchttpclient
 
 import scalaz.concurrent.Task
-import scalaz.stream.async.boundedQueue
 import scalaz.stream.Process
 import scalaz.stream.Process.repeatEval
+import scalaz.stream.async.boundedQueue
+
 import org.log4s.getLogger
 
 class QueueSubscriber[A](bufferSize: Int = 8) extends UnicastSubscriber[A] {

@@ -1,7 +1,7 @@
 package org.http4s.parser
 
-import org.http4s.headers._
 import org.http4s._
+import org.http4s.headers._
 import org.specs2.mutable.Specification
 
 class ProxyAuthenticateHeaderSpec extends Specification with HeaderParserHelper[`Proxy-Authenticate`] {

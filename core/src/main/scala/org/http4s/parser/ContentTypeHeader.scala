@@ -18,8 +18,8 @@
 package org.http4s
 package parser
 
+import org.http4s.headers.`Content-Type`
 import org.parboiled2._
-import headers.`Content-Type`
 
 private[parser] trait ContentTypeHeader {
 

@@ -1,10 +1,7 @@
 package org.http4s.dsl
 
+import org.http4s.{EntityEncoder, Headers, MediaRange, MediaType}
 import org.http4s.headers.{Accept, `Content-Length`, `Content-Type`}
-import org.http4s.Headers
-import org.http4s.MediaRange
-import org.http4s.MediaType
-import org.http4s.EntityEncoder
 import org.specs2.mutable.Specification
 
 class ResponseGeneratorSpec extends Specification {

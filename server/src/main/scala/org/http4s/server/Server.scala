@@ -1,10 +1,10 @@
 package org.http4s
 package server
 
-import java.net.{InetAddress, InetSocketAddress}
-import java.util.concurrent.{CountDownLatch, ExecutorService}
-
 import scalaz.concurrent.Task
+
+import java.net.InetSocketAddress
+import java.util.concurrent.CountDownLatch
 
 trait Server {
   def shutdown: Task[Unit]

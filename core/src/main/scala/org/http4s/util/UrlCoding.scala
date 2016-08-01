@@ -4,12 +4,12 @@
  */
 package org.http4s.util
 
-import java.util.Locale
-import util.matching.Regex
-import util.matching.Regex.Match
 import java.nio.charset.Charset
-import java.nio.{ CharBuffer, ByteBuffer }
-import collection.immutable.BitSet
+import java.nio.{ByteBuffer, CharBuffer}
+import java.util.Locale
+import scala.collection.immutable.BitSet
+import scala.util.matching.Regex
+import scala.util.matching.Regex.Match
 
 private[util] trait UrlCodingUtils {
 

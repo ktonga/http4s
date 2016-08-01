@@ -2,9 +2,7 @@ package org.http4s
 package headers
 
 import org.http4s.parser.HttpHeaderParser
-import org.http4s.util.Writer
-
-import org.http4s.util.NonEmptyList
+import org.http4s.util.{NonEmptyList, Writer}
 
 object `If-None-Match` extends HeaderKey.Internal[`If-None-Match`] with HeaderKey.Singleton {
 

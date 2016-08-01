@@ -17,11 +17,12 @@
  */
 package org.http4s.parser
 
-import org.parboiled2.{Rule1, ParserInput}
-import org.http4s.headers.`Cache-Control`
 import org.http4s.CacheDirective
 import org.http4s.CacheDirective._
+import org.http4s.headers.`Cache-Control`
 import org.http4s.util.string._
+import org.parboiled2.{ParserInput, Rule1}
+
 import scala.concurrent.duration._
 
 private[parser] trait CacheControlHeader {

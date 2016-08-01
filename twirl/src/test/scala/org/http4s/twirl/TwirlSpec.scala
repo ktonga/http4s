@@ -1,11 +1,10 @@
 package org.http4s
 package twirl
 
-import org.scalacheck.Arbitrary
-import org.scalacheck.Gen
-import play.twirl.api.{JavaScript, Html, Txt, Xml}
-import headers.`Content-Type`
-import Status.Ok
+import org.http4s.Status.Ok
+import org.http4s.headers.`Content-Type`
+import org.scalacheck.{Arbitrary, Gen}
+import play.twirl.api.{Html, JavaScript, Txt, Xml}
 
 class TwirlSpec extends Http4sSpec {
   implicit val arbCharset: Arbitrary[Charset] = Arbitrary {

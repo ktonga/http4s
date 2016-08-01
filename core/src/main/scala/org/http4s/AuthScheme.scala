@@ -1,6 +1,6 @@
 package org.http4s
 
-import util.string._
+import org.http4s.util.string._
 
 
 object AuthScheme {

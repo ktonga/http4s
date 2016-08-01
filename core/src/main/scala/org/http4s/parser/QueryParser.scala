@@ -1,20 +1,15 @@
 package org.http4s
 package parser
 
-import compat._
+import org.http4s.compat._
+import org.http4s.parser.QueryParser._
+import org.http4s.util.string._
 
 import java.io.UnsupportedEncodingException
 import java.nio.CharBuffer
-import org.http4s._
-import org.http4s.util.string._
-
 import scala.annotation.switch
 import scala.collection.immutable.BitSet
 import scala.io.Codec
-
-import QueryParser._
-
-import scalaz.{-\/, \/-, \/}
 
 /** Split an encoded query string into unencoded key value pairs
   * It always assumes any input is a  valid query, including "".

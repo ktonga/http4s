@@ -1,8 +1,8 @@
 package org.http4s
 package circe
 
-import io.circe.{Encoder, Decoder, Json, Printer}
 import io.circe.jawn.CirceSupportParser.facade
+import io.circe.{Decoder, Encoder, Json, Printer}
 import org.http4s.headers.`Content-Type`
 
 // Originally based on ArgonautInstances

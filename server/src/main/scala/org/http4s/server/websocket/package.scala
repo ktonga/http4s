@@ -1,11 +1,11 @@
 package org.http4s
 package server
 
-import org.http4s.websocket.Websocket
-import org.http4s.websocket.WebsocketBits.WebSocketFrame
-
 import scalaz.concurrent.Task
 import scalaz.stream._
+
+import org.http4s.websocket.Websocket
+import org.http4s.websocket.WebsocketBits.WebSocketFrame
 
 package object websocket {
   val websocketKey = AttributeKey.http4s[Websocket]("websocket")

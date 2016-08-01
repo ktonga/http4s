@@ -1,15 +1,14 @@
 package org.http4s.blaze.util
 
-import java.nio.ByteBuffer
+import scalaz.concurrent.Task
 
 import org.http4s.Headers
 import org.http4s.blaze.pipeline.TailStage
 import org.http4s.util.StringWriter
-
 import scodec.bits.ByteVector
 
+import java.nio.ByteBuffer
 import scala.concurrent.{ExecutionContext, Future}
-import scalaz.concurrent.Task
 
 class CachingChunkWriter(headers: StringWriter,
                          pipe: TailStage[ByteBuffer],

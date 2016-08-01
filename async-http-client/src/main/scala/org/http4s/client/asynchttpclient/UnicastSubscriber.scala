@@ -3,8 +3,8 @@
  */
 package org.http4s.client.asynchttpclient
 
-import org.reactivestreams.{Subscription, Subscriber}
 import org.log4s.getLogger
+import org.reactivestreams.{Subscriber, Subscription}
 
 abstract class UnicastSubscriber[A](bufferSize: Int = 8) extends Subscriber[A] {
   private[this] val logger = getLogger

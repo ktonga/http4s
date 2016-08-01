@@ -1,23 +1,21 @@
 package org.http4s
 package servlet
 
-import compat._
-
-import java.util.concurrent.atomic.AtomicReference
-import javax.servlet.{WriteListener, ReadListener}
-import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
-
-import org.http4s.util.{TrampolineExecutionContext, bug}
-import scodec.bits.ByteVector
-
-import scala.annotation.tailrec
-import scalaz.stream.Cause.{End, Terminated}
-import scalaz.{\/, -\/}
+import scalaz.\/
 import scalaz.concurrent.Task
+import scalaz.stream.Cause.{End, Terminated}
 import scalaz.stream.Process._
 import scalaz.stream.io.chunkR
 
+import org.http4s.compat._
+import org.http4s.util.{TrampolineExecutionContext, bug}
 import org.log4s.getLogger
+import scodec.bits.ByteVector
+
+import java.util.concurrent.atomic.AtomicReference
+import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
+import javax.servlet.{ReadListener, WriteListener}
+import scala.annotation.tailrec
 
 /**
  * Determines the mode of I/O used for reading request bodies and writing response bodies.

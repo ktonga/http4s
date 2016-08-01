@@ -3,10 +3,9 @@ package org.http4s
 
 import scalaz.scalacheck.ScalazProperties
 
+import org.http4s.Status._
 import org.scalacheck.Gen
 import org.scalacheck.Prop.forAll
-
-import Status._
 
 class StatusSpec extends Http4sSpec {
   "code is valid iff between 100 and 599" in {

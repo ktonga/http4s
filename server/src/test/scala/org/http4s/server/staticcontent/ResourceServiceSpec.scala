@@ -5,8 +5,6 @@ package staticcontent
 import org.http4s.server.middleware.URITranslation
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
-
 class ResourceServiceSpec extends Http4sSpec with StaticContentShared {
 
   val s = resourceService(ResourceService.Config(""))

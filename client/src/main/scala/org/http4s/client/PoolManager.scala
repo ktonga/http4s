@@ -1,16 +1,15 @@
 package org.http4s
 package client
 
-import compat._
-
-import java.util.concurrent.ExecutorService
-
-import org.log4s.getLogger
-
-import scala.annotation.tailrec
-import scala.collection.mutable
 import scalaz.{-\/, \/-}
 import scalaz.concurrent.Task
+
+import org.http4s.compat._
+import org.log4s.getLogger
+
+import java.util.concurrent.ExecutorService
+import scala.annotation.tailrec
+import scala.collection.mutable
 
 private final class PoolManager[A <: Connection](builder: ConnectionBuilder[A],
                                                  maxTotal: Int,

@@ -1,20 +1,18 @@
 package com.example.http4s.blaze
 
+import scalaz.concurrent.{Strategy, Task}
+import scalaz.stream.async.unboundedQueue
+import scalaz.stream.time.awakeEvery
+import scalaz.stream.{DefaultScheduler, Process, Sink}
+
 import org.http4s._
+import org.http4s.dsl._
 import org.http4s.server.ServerApp
 import org.http4s.server.blaze.BlazeBuilder
-import org.http4s.websocket.WebsocketBits._
-import org.http4s.dsl._
 import org.http4s.server.websocket._
+import org.http4s.websocket.WebsocketBits._
 
 import scala.concurrent.duration._
-
-import scalaz.concurrent.Task
-import scalaz.concurrent.Strategy
-import scalaz.stream.async.unboundedQueue
-import scalaz.stream.{Process, Sink}
-import scalaz.stream.{DefaultScheduler, Exchange}
-import scalaz.stream.time.awakeEvery
 
 object BlazeWebSocketExample extends ServerApp {
 

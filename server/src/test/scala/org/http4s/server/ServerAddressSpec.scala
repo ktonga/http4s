@@ -1,10 +1,11 @@
 package org.http4s
 package server
 
-import java.net.InetSocketAddress
-import org.specs2.mutable.After
-import scalaz.{\/-, -\/}
 import scalaz.concurrent.Task
+
+import org.specs2.mutable.After
+
+import java.net.InetSocketAddress
 
 trait ServerAddressSpec extends Http4sSpec {
   def builder: ServerBuilder

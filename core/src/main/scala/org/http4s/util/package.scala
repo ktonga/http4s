@@ -1,15 +1,11 @@
 package org.http4s
 
-import java.nio.CharBuffer
-import java.nio.charset.CharsetDecoder
+import scalaz.stream.Process._
+import scalaz.stream.Process1
 
 import scodec.bits.ByteVector
 
-import scalaz.State
-import scalaz.concurrent.Task
-import scalaz.stream.{process1, Channel, Process, Process1}
-import scalaz.stream.Process._
-import scalaz.stream.io.bufferedChannel
+import java.nio.CharBuffer
 
 package object util {
   /** Temporary.  Contribute back to scalaz-stream. */

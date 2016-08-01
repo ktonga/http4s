@@ -1,14 +1,12 @@
 package org.http4s
 package parser
 
-import compat._
-
 import scalaz._
 
-import org.http4s.ParseFailure
-import org.parboiled2.{ ErrorFormatter, ParseError }
+import org.http4s.compat._
 import org.parboiled2.Parser.DeliveryScheme
 import org.parboiled2.support.Unpack
+import org.parboiled2.{ErrorFormatter, ParseError}
 import shapeless.HList
 
 private[http4s] object ScalazDeliverySchemes {

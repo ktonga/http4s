@@ -1,8 +1,8 @@
 package org.http4s
 package parser
 
-import org.http4s.headers.`Content-Type`
 import org.http4s.MediaType._
+import org.http4s.headers.`Content-Type`
 import org.specs2.mutable.Specification
 
 class ContentTypeHeaderSpec extends Specification with HeaderParserHelper[`Content-Type`] {

@@ -2,11 +2,9 @@ package org.http4s
 package server
 package middleware
 
-import java.nio.charset.StandardCharsets
-
 import org.http4s.Status._
 
-import org.specs2.mutable.Specification
+import java.nio.charset.StandardCharsets
 
 class UriTranslationSpec extends Http4sSpec {
 

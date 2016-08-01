@@ -3,8 +3,8 @@ package server
 package middleware
 
 import org.http4s.Method._
+import org.http4s.Status.{BadRequest, NotFound, Ok}
 import org.http4s.headers.Host
-import org.http4s.Status.{Ok,BadRequest,NotFound}
 
 
 class VirtualHostSpec extends Http4sSpec {

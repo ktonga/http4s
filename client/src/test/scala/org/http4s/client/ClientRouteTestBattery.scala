@@ -1,17 +1,15 @@
 package org.http4s
 package client
 
-import java.net.InetSocketAddress
-import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
-
+import scalaz.concurrent.Task
+import scalaz.stream.Process
 
 import org.http4s.Uri.{Authority, RegName}
 import org.http4s.client.testroutes.GetRoutes
+import org.specs2.specification.core.{Fragment, Fragments}
 
-import org.specs2.specification.core.{ Fragments, Fragment }
-
-import scalaz.concurrent.Task
-import scalaz.stream.Process
+import java.net.InetSocketAddress
+import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 
 
 abstract class ClientRouteTestBattery(name: String, client: Client)

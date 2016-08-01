@@ -2,17 +2,14 @@ package org.http4s
 package client
 package asynchttpclient
 
-import compat._
-
-import java.util.concurrent.atomic.AtomicInteger
-
-import org.reactivestreams.{Subscription, Publisher, Subscriber}
+import org.http4s.compat._
 import org.reactivestreams.tck.SubscriberWhiteboxVerification.WhiteboxSubscriberProbe
 import org.reactivestreams.tck.{SubscriberWhiteboxVerification, TestEnvironment}
-import org.testng.annotations._
+import org.reactivestreams.{Publisher, Subscriber, Subscription}
 import org.testng.Assert._
+import org.testng.annotations._
 
-import scalaz.-\/
+import java.util.concurrent.atomic.AtomicInteger
 
 class QueueSubscriberTest extends SubscriberWhiteboxVerification[Integer](new TestEnvironment) {
   private lazy val counter = new AtomicInteger

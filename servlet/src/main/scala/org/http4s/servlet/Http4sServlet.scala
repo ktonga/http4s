@@ -1,21 +1,19 @@
 package org.http4s
 package servlet
 
-import java.util.concurrent.ExecutorService
-import org.http4s.headers.`Transfer-Encoding`
-import server._
-
-import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
-import java.net.{InetSocketAddress, InetAddress}
-
-import scala.collection.JavaConverters._
-import javax.servlet._
-
-import scala.concurrent.duration.Duration
-import scalaz.concurrent.{Strategy, Task}
 import scalaz.{-\/, \/-}
-import scala.util.control.NonFatal
+import scalaz.concurrent.{Strategy, Task}
+
+import org.http4s.headers.`Transfer-Encoding`
+import org.http4s.server._
 import org.log4s.getLogger
+
+import java.net.InetSocketAddress
+import java.util.concurrent.ExecutorService
+import javax.servlet._
+import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
+import scala.collection.JavaConverters._
+import scala.concurrent.duration.Duration
 
 class Http4sServlet(service: HttpService,
                     asyncTimeout: Duration = Duration.Inf,

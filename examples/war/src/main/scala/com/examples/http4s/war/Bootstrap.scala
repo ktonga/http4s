@@ -1,10 +1,10 @@
 package com.examples.http4s.war
 
-import javax.servlet.{ServletContextEvent, ServletContextListener}
-import javax.servlet.annotation.WebListener
-
 import com.example.http4s.ExampleService
 import org.http4s.servlet.syntax._
+
+import javax.servlet.annotation.WebListener
+import javax.servlet.{ServletContextEvent, ServletContextListener}
 
 @WebListener
 class Bootstrap extends ServletContextListener {

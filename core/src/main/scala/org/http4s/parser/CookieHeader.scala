@@ -18,11 +18,11 @@
 package org.http4s
 package parser
 
-import java.time.Instant
-
-import org.parboiled2._
 import org.http4s.headers.`Set-Cookie`
-import shapeless.{HNil, ::}
+import org.parboiled2._
+import shapeless.{::, HNil}
+
+import java.time.Instant
 
 private[parser] trait CookieHeader {
 

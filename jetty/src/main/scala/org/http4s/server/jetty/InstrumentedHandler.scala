@@ -5,29 +5,17 @@
  */
 package org.http4s.server.jetty
 
-import com.codahale.metrics.Counter
-import com.codahale.metrics.Meter
-import com.codahale.metrics.MetricRegistry
-import com.codahale.metrics.RatioGauge
+import com.codahale.metrics.MetricRegistry.{name => registryName}
 import com.codahale.metrics.RatioGauge._
-import com.codahale.metrics.Timer
+import com.codahale.metrics._
 import org.eclipse.jetty.http.HttpMethod
-import org.eclipse.jetty.server.AsyncContextState
-import org.eclipse.jetty.server.Handler
-import org.eclipse.jetty.server.HttpChannelState
-import org.eclipse.jetty.server.Request
+import org.eclipse.jetty.http.HttpMethod._
+import org.eclipse.jetty.server.{AsyncContextState, HttpChannelState, Request}
 import org.eclipse.jetty.server.handler.HandlerWrapper
 
-import javax.servlet.AsyncEvent
-import javax.servlet.AsyncListener
-import javax.servlet.ServletException
-import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
-import java.io.IOException
 import java.util.concurrent.TimeUnit
-import HttpMethod._
-
-import com.codahale.metrics.MetricRegistry.{name => registryName}
+import javax.servlet.{AsyncEvent, AsyncListener}
+import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 /**
  * A Jetty {@link Handler} which records various metrics about an underlying {@link Handler}
  * instance.

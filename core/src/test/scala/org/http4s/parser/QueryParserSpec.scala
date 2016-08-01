@@ -2,9 +2,6 @@ package org.http4s
 package parser
 
 import java.nio.CharBuffer
-
-import org.specs2.mutable.Specification
-
 import scala.io.Codec
 
 class QueryParserSpec extends Http4sSpec {

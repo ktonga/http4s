@@ -3,7 +3,7 @@ package org.http4s.util
 import org.http4s.ParseResult
 import org.http4s.parser.QueryParser
 
-import collection.immutable.BitSet
+import scala.collection.immutable.BitSet
 import scala.io.Codec
 
 

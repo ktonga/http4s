@@ -1,13 +1,11 @@
 package org.http4s.client
 package blaze
 
+import org.http4s.headers.`User-Agent`
+
 import java.nio.channels.AsynchronousChannelGroup
 import java.util.concurrent.ExecutorService
 import javax.net.ssl.SSLContext
-
-import org.http4s.client.impl.DefaultExecutor
-import org.http4s.headers.`User-Agent`
-
 import scala.concurrent.duration.Duration
 
 /** Config object for the blaze clients

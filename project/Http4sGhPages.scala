@@ -1,11 +1,9 @@
-import sbt._
-import Keys._
-
+import Http4sBuild.apiVersion
 import com.typesafe.sbt.SbtGhPages.GhPagesKeys._
 import com.typesafe.sbt.SbtGit.GitKeys._
 import com.typesafe.sbt.git.GitRunner
-
-import Http4sBuild.apiVersion
+import sbt.Keys._
+import sbt._
 
 // Copied from sbt-ghpages to avoid blowing away the old API
 // https://github.com/sbt/sbt-ghpages/issues/10

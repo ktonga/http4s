@@ -1,11 +1,11 @@
 package org.http4s.util
 
-import java.nio.charset.{ Charset, StandardCharsets }
-import java.time.{ZoneId, Instant}
-import java.time.format.DateTimeFormatter
-import java.util.Locale
-
 import scodec.bits.ByteVector
+
+import java.nio.charset.{Charset, StandardCharsets}
+import java.time.format.DateTimeFormatter
+import java.time.{Instant, ZoneId}
+import java.util.Locale
 import scala.annotation.tailrec
 import scala.collection.immutable.BitSet
 

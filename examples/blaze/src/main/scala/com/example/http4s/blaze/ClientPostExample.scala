@@ -1,7 +1,8 @@
 package com.example.http4s.blaze
 
 import org.http4s._
-import org.http4s.dsl._
+import org.http4s.Method._
+import org.http4s.Uri.uri
 import org.http4s.client._
 import org.http4s.client.blaze.{defaultClient => client}
 

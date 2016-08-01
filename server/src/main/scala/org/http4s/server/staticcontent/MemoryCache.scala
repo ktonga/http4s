@@ -1,15 +1,13 @@
 package org.http4s.server.staticcontent
 
-import org.http4s._
-
-import scodec.bits.ByteVector
-
-import java.util.concurrent.ConcurrentHashMap
-
 import scalaz.concurrent.Task
 import scalaz.stream.Process
 
+import org.http4s._
 import org.log4s.getLogger
+import scodec.bits.ByteVector
+
+import java.util.concurrent.ConcurrentHashMap
 
 
 /** [[CacheStrategy]] that will cache __all__ [[Response]] bodies in local memory

@@ -1,7 +1,8 @@
 package org.http4s
 
+import org.http4s.headers.`Content-Type`
+
 import java.io.File
-import headers.`Content-Type`
 
 
 class StaticFileSpec extends Http4sSpec {

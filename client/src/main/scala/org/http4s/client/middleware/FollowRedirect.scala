@@ -2,9 +2,6 @@ package org.http4s
 package client
 package middleware
 
-import org.http4s._
-
-import scalaz.Kleisli
 import scalaz.concurrent.Task
 
 /** Follow redirect responses */

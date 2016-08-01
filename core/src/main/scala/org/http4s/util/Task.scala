@@ -1,12 +1,13 @@
 package org.http4s
 package util
 
-import compat._
-
-import scala.concurrent.{ExecutionContext, Future, Promise}
-import scala.util.{Success, Failure}
 import scalaz.{-\/, \/-}
 import scalaz.concurrent.Task
+
+import org.http4s.compat._
+
+import scala.concurrent.{ExecutionContext, Future, Promise}
+import scala.util.{Failure, Success}
 
 trait TaskFunctions {
   def unsafeTaskToFuture[A](task: Task[A]): Future[A] = {

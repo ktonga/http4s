@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz.{\/, EitherT}
+import scalaz.{EitherT, \/}
 import scalaz.concurrent.Task
 
 object DecodeResult {

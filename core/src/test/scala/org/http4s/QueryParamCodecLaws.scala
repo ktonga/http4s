@@ -1,11 +1,10 @@
 package org.http4s
 
-import compat._
+import scalaz.Equal
 
+import org.http4s.compat._
 import org.scalacheck.Prop._
 import org.scalacheck.{Arbitrary, Properties}
-
-import scalaz.Equal
 
 /**
  * Instances of [[QueryParamDecoder]] and [[QueryParamEncoder]]

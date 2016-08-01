@@ -1,8 +1,8 @@
 package org.http4s.util
 
 import java.lang.Thread.UncaughtExceptionHandler
-import java.util.concurrent.atomic.AtomicLong
 import java.util.concurrent._
+import java.util.concurrent.atomic.AtomicLong
 
 object threads {
   final case class ThreadPriority(toInt: Int)

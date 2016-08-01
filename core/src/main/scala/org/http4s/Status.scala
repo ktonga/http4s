@@ -1,12 +1,12 @@
 package org.http4s
 
-import compat._
-
-import java.util.concurrent.atomic.AtomicReferenceArray
 import scalaz._
 
-import Status.ResponseClass
+import org.http4s.Status.ResponseClass
+import org.http4s.compat._
 import org.http4s.util.Renderable
+
+import java.util.concurrent.atomic.AtomicReferenceArray
 
 /** Representation of the HTTP response code and reason
   *

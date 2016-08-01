@@ -2,9 +2,11 @@ package org.http4s
 package server
 package middleware
 
-import scala.concurrent.duration._
 import scalaz.concurrent.Task
-import Method._
+
+import org.http4s.Method._
+
+import scala.concurrent.duration._
 
 class TimeoutSpec extends Http4sSpec {
 

@@ -3,8 +3,9 @@ package server
 package middleware
 package authentication
 
-import scalaz.concurrent.Task
 import scalaz._
+import scalaz.concurrent.Task
+
 import org.http4s.headers.`WWW-Authenticate`
 
 /**

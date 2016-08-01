@@ -1,15 +1,14 @@
 package org.http4s
 package json4s
 
-import compat._
-
 import org.http4s.EntityEncoderSpec._
+import org.http4s.compat._
 import org.http4s.headers.`Content-Type`
 import org.http4s.jawn.JawnDecodeSupportSpec
 import org.json4s.DefaultReaders._
 import org.json4s.DefaultWriters._
 import org.json4s.JValue
-import org.json4s.JsonAST.{JInt, JField, JString, JObject}
+import org.json4s.JsonAST.{JField, JInt, JObject, JString}
 
 trait Json4sSpec[J] extends JawnDecodeSupportSpec[JValue] { self: Json4sInstances[J] =>
   import Json4sSpec._

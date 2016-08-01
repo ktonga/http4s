@@ -2,12 +2,12 @@ package org.http4s
 
 import org.http4s.Query._
 import org.http4s.parser.QueryParser
-import org.http4s.util.{UrlFormCodec, UrlCodingUtils, Writer, Renderable}
+import org.http4s.util.{Renderable, UrlCodingUtils, UrlFormCodec, Writer}
 
 import scala.collection.generic.CanBuildFrom
 import scala.collection.immutable.{BitSet, IndexedSeq}
 import scala.collection.mutable.ListBuffer
-import scala.collection.{ IndexedSeqOptimized, mutable }
+import scala.collection.{IndexedSeqOptimized, mutable}
 
 /** Collection representation of a query string
   *

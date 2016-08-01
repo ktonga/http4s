@@ -1,14 +1,11 @@
 package org.http4s
 package server
 
-import java.net.ServerSocket
-import java.util.concurrent.atomic.AtomicReference
-import java.util.concurrent.{ CountDownLatch, RejectedExecutionException }
-import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.{ Executors, ThreadFactory }
-import scala.annotation.tailrec
 import scalaz.concurrent.Task
-import org.http4s.util.threads
+
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.atomic.AtomicReference
+import scala.annotation.tailrec
 
 /**
  * Apps extending the server app trait get a graceful shutdown.  The

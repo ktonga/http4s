@@ -1,18 +1,17 @@
 package org.http4s.server.blaze
 
-import java.nio.ByteBuffer
-import java.nio.charset.StandardCharsets._
-
-import org.http4s.headers._
 import org.http4s._
 import org.http4s.blaze.http.websocket.{WSFrameAggregator, WebSocketDecoder}
-import org.http4s.websocket.WebsocketHandshake
 import org.http4s.blaze.pipeline.LeafBuilder
 import org.http4s.blaze.websocket.Http4sWSStage
+import org.http4s.headers._
 import org.http4s.util.CaseInsensitiveString._
+import org.http4s.websocket.WebsocketHandshake
 
-import scala.util.{Failure, Success}
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets._
 import scala.concurrent.Future
+import scala.util.{Failure, Success}
 
 private trait WebSocketSupport extends Http1ServerStage {
   override protected def renderResponse(req: Request, resp: Response, cleanup: () => Future[ByteBuffer]): Unit = {

@@ -2,8 +2,8 @@ package org.http4s
 package server
 package middleware
 
-import headers.Host
-import Status.{BadRequest, NotFound}
+import org.http4s.Status.{BadRequest, NotFound}
+import org.http4s.headers.Host
 
 /** Middleware for virtual host mapping
   *

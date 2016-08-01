@@ -1,6 +1,6 @@
 import com.typesafe.sbt.SbtGhPages.GhPagesKeys._
-import com.typesafe.sbt.SbtSite.site
 import com.typesafe.sbt.SbtSite.SiteKeys._
+import com.typesafe.sbt.SbtSite.site
 import com.typesafe.sbt.pgp.PgpKeys._
 import sbtunidoc.Plugin.UnidocKeys._
 
@@ -451,8 +451,8 @@ lazy val mimaSettings = Seq(
     org % s"${mod}_${binVer}" % _
   }),
   binaryIssueFilters ++= {
-    import com.typesafe.tools.mima.core._
     import com.typesafe.tools.mima.core.ProblemFilters._
+    import com.typesafe.tools.mima.core._
     Seq(
       exclude[DirectMissingMethodProblem]("org.http4s.client.blaze.Http1Connection.this")
     )

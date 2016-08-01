@@ -1,6 +1,5 @@
 package org.http4s
 
-import scalaz.Kleisli
 import scalaz.concurrent.Task
 
 package object server {

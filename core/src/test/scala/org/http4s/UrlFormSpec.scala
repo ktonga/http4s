@@ -1,11 +1,7 @@
 package org.http4s
 
-import org.scalacheck.Arbitrary
-import org.specs2.ScalaCheck
-import org.specs2.scalacheck.Parameters
-
-import scalaz.\/-
 import org.http4s.util.NonEmptyList
+import org.specs2.ScalaCheck
 
 class UrlFormSpec extends Http4sSpec with ScalaCheck {
 //  // TODO: arbitrary charsets would be nice

@@ -1,8 +1,8 @@
 package org.http4s
 package parser
 
-import org.http4s.headers.{`Content-Range`, Range}
 import org.http4s.headers.Range.SubRange
+import org.http4s.headers.{Range, `Content-Range`}
 
 
 class RangeParserSpec extends Http4sSpec {

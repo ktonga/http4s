@@ -18,7 +18,8 @@
  */
 package org.http4s
 
-import org.http4s.util.{Writer, Renderable}
+import org.http4s.util.{Renderable, Writer}
+
 import scala.annotation.tailrec
 
 object LanguageTag {

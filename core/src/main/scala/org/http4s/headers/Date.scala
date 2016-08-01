@@ -1,11 +1,10 @@
 package org.http4s
 package headers
 
-import java.time.Instant
-import java.time.format.DateTimeFormatter
-
 import org.http4s.parser.HttpHeaderParser
 import org.http4s.util.{Renderer, Writer}
+
+import java.time.Instant
 
 object Date extends HeaderKey.Internal[Date] with HeaderKey.Singleton {
   override def parse(s: String): ParseResult[Date] =

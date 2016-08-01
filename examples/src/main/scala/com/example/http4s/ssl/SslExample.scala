@@ -1,11 +1,12 @@
 package com.example.http4s.ssl
 
-import java.nio.file.Paths
+import scalaz.concurrent.Task
 
 import com.example.http4s.ExampleService
 import org.http4s.server.SSLSupport.StoreInfo
-import org.http4s.server.{ SSLSupport, Server, ServerApp, ServerBuilder }
-import scalaz.concurrent.Task
+import org.http4s.server.{SSLSupport, Server, ServerApp, ServerBuilder}
+
+import java.nio.file.Paths
 
 trait SslExample extends ServerApp {
   // TODO: Reference server.jks from something other than one child down.

@@ -1,26 +1,25 @@
 package com.example.http4s
 
+import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
+import scalaz.concurrent.Task
+import scalaz.stream.{Process, time}
+
 import io.circe.Json
+import org.http4s.MediaType._
+import org.http4s._
+import org.http4s.circe._
+import org.http4s.dsl._
+import org.http4s.headers.{`Content-Length`, `Content-Type`}
+import org.http4s.multipart._
+import org.http4s.server._
+import org.http4s.server.middleware.authentication._
+import org.http4s.server.middleware.PushSupport._
+import org.http4s.scalaxml._
+import org.http4s.twirl._
 
 import scala.concurrent.duration._
 import scala.concurrent.{ExecutionContext, Future}
-
-import org.http4s.headers.{`Content-Type`, `Content-Length`}
-import org.http4s._
-import org.http4s.MediaType._
-import org.http4s.dsl._
-import org.http4s.circe._
-import org.http4s.multipart._
-import org.http4s.scalaxml._
-import org.http4s.server._
-import org.http4s.server.middleware.PushSupport._
-import org.http4s.server.middleware.authentication._
-import org.http4s.twirl._
-
-import scalaz.stream.Process
-import scalaz.stream.time
-import scalaz.concurrent.Task
-import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object ExampleService {
 

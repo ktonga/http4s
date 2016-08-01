@@ -2,20 +2,17 @@ package com.example.http4s.blaze
 
 /// code_ref: blaze_server_example
 
-import java.util.concurrent.TimeUnit
-
-import com.example.http4s.ExampleService
-import org.http4s._
-import org.http4s.server.ServerApp
-import org.http4s.server.Router
-import org.http4s.server.blaze.BlazeBuilder
-import org.http4s.server.middleware.Metrics
-import org.http4s.dsl._
-
 import com.codahale.metrics._
 import com.codahale.metrics.json.MetricsModule
-
+import com.example.http4s.ExampleService
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.http4s._
+import org.http4s.dsl._
+import org.http4s.server.{Router, ServerApp}
+import org.http4s.server.blaze.BlazeBuilder
+import org.http4s.server.middleware.Metrics
+
+import java.util.concurrent.TimeUnit
 
 object BlazeMetricsExample extends ServerApp {
 

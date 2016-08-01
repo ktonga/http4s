@@ -2,30 +2,28 @@ package org.http4s
 package client
 package blaze
 
-import compat._
-
-import java.nio.ByteBuffer
-import java.nio.charset.StandardCharsets
-import java.util.concurrent.{ExecutorService, TimeoutException}
-import java.util.concurrent.atomic.AtomicReference
-
-import org.http4s.Uri.{Authority, RegName}
-import org.http4s.{headers => H}
-import org.http4s.blaze.Http1Stage
-import org.http4s.blaze.pipeline.Command
-import org.http4s.blaze.pipeline.Command.EOF
-import org.http4s.blaze.util.ProcessWriter
-import org.http4s.headers.{Connection, Host, `Content-Length`, `User-Agent`}
-import org.http4s.util.{StringWriter, Writer}
-
-import scala.annotation.tailrec
-import scala.concurrent.ExecutionContext
-import scala.util.{Failure, Success}
 import scalaz.concurrent.Task
 import scalaz.stream.Cause.{End, Terminated}
 import scalaz.stream.Process
 import scalaz.stream.Process.{Halt, halt}
-import scalaz.{-\/, \/-}
+
+import org.http4s.Uri.{Authority, RegName}
+import org.http4s.blaze.Http1Stage
+import org.http4s.blaze.pipeline.Command
+import org.http4s.blaze.pipeline.Command.EOF
+import org.http4s.blaze.util.ProcessWriter
+import org.http4s.compat._
+import org.http4s.headers.{Connection, Host, `Content-Length`, `User-Agent`}
+import org.http4s.util.{StringWriter, Writer}
+import org.http4s.{headers => H}
+
+import java.nio.ByteBuffer
+import java.nio.charset.StandardCharsets
+import java.util.concurrent.atomic.AtomicReference
+import java.util.concurrent.{ExecutorService, TimeoutException}
+import scala.annotation.tailrec
+import scala.concurrent.ExecutionContext
+import scala.util.{Failure, Success}
 
 private final class Http1Connection(val requestKey: RequestKey,
                             config: BlazeClientConfig,

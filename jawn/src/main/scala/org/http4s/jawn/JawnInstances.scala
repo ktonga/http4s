@@ -1,13 +1,11 @@
 package org.http4s
 package jawn
 
-import compat._
+import scalaz.stream.Process.emit
 
 import _root_.jawn.{AsyncParser, Facade, ParseException}
 import jawnstreamz._
-
-import scalaz.{-\/, \/-}
-import scalaz.stream.Process.emit
+import org.http4s.compat._
 
 trait JawnInstances {
   def jawnDecoder[J](implicit facade: Facade[J]): EntityDecoder[J] =

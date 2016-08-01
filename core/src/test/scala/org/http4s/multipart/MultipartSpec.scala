@@ -1,30 +1,22 @@
 package org.http4s
 package multipart
 
-import compat._
-
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-
-
-import org.http4s._
-import org.http4s.MediaType._
-import org.http4s.headers._
-import org.http4s.Http4s._
-import org.http4s.Uri._
-import org.http4s.util._
-import org.http4s.Status.Ok
 import scalaz.Equal
-import scalaz.concurrent.Task
-import scodec.bits._
-
-import org.http4s.EntityEncoder._
-import Entity._
 import scalaz.stream.Process
 import scalaz.stream.text._
+
+import org.http4s.EntityEncoder._
+import org.http4s.Http4s._
+import org.http4s.MediaType._
+import org.http4s.Uri._
+import org.http4s.compat._
+import org.http4s.headers._
+import org.http4s.util._
 import org.specs2.Specification
 import org.specs2.matcher.DisjunctionMatchers
+import scodec.bits._
+
+import java.io.File
 
 
 class MultipartSpec extends Specification with DisjunctionMatchers {

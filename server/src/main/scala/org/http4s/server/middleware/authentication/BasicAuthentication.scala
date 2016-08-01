@@ -3,11 +3,10 @@ package server
 package middleware
 package authentication
 
-import compat._
-
-import org.http4s.headers.Authorization
-import scalaz._
 import scalaz.concurrent.Task
+
+import org.http4s.compat._
+import org.http4s.headers.Authorization
 
 /**
  * Provides Basic Authentication from RFC 2617.

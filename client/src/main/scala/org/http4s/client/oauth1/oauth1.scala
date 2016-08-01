@@ -1,15 +1,15 @@
 package org.http4s
 package client
 
-import java.nio.charset.StandardCharsets
-import javax.crypto
+import scalaz.concurrent.Task
 
 import org.http4s.headers.Authorization
 import org.http4s.util.string._
 import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
+import java.nio.charset.StandardCharsets
+import javax.crypto
 import scala.collection.mutable.ListBuffer
-import scalaz.concurrent.Task
 
 /** Basic OAuth1 message signing support
   * 

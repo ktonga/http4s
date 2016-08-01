@@ -1,15 +1,11 @@
 package org.http4s
 
-import compat._
-
 import scalaz.scalacheck.ScalazProperties
 
 import org.http4s.CharsetRange.`*`
-import org.scalacheck.{Gen, Prop}
-import org.scalacheck.Prop.forAll
+import org.http4s.compat._
 import org.scalacheck.Arbitrary._
-import org.specs2.ScalaCheck
-import org.specs2.mutable.Specification
+import org.scalacheck.Prop.forAll
 
 class CharsetRangeSpec extends Http4sSpec {
   "*" should {

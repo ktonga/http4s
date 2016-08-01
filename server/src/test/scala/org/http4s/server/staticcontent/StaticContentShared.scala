@@ -2,9 +2,9 @@ package org.http4s
 package server
 package staticcontent
 
-import java.nio.charset.StandardCharsets
-
 import scodec.bits.ByteVector
+
+import java.nio.charset.StandardCharsets
 
 
 private [staticcontent] trait StaticContentShared {

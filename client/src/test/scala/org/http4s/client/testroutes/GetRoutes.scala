@@ -1,9 +1,9 @@
 package org.http4s.client.testroutes
 
-import org.http4s.Status._
-import org.http4s.{TransferCoding, Response}
-
 import scalaz.stream.Process
+
+import org.http4s.Status._
+import org.http4s.{Response, TransferCoding}
 
 trait GetRoutes {
 

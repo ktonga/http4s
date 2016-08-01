@@ -1,9 +1,5 @@
 package org.http4s
 
-import java.io.{File, FileOutputStream}
-import scala.annotation.unchecked.uncheckedVariance
-import scala.util.control.NonFatal
-
 import scalaz.Liskov.{<~<, refl}
 import scalaz.concurrent.Task
 import scalaz.stream.io
@@ -14,6 +10,10 @@ import org.http4s.multipart.{Multipart, MultipartDecoder}
 import org.http4s.util.UrlFormCodec.{decode => formDecode}
 import org.http4s.util.byteVector._
 import scodec.bits.ByteVector
+
+import java.io.{File, FileOutputStream}
+import scala.annotation.unchecked.uncheckedVariance
+import scala.util.control.NonFatal
 
 /** A type that can be used to decode a [[Message]]
   * EntityDecoder is used to attempt to decode a [[Message]] returning the

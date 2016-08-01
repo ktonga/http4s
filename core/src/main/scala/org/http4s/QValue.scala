@@ -1,10 +1,11 @@
 package org.http4s
 
-import scala.language.experimental.macros
-import scala.reflect.macros.Context
 import scalaz._
 
 import org.http4s.util.{Renderable, Writer}
+
+import scala.language.experimental.macros
+import scala.reflect.macros.Context
 
 /**
  * A Quality Value.  Represented as thousandths for an exact representation rounded to three

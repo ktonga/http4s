@@ -1,14 +1,13 @@
 package org.http4s
 
-import compat._
+import scalaz.{Equal, \/}
 
+import org.http4s.compat._
 import org.http4s.headers.`Content-Type`
 import org.http4s.parser.QueryParser
-import org.http4s.util.{UrlFormCodec, UrlCodingUtils}
+import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
-import scala.collection.{GenTraversableOnce, MapLike}
 import scala.io.Codec
-import scalaz.{ \/, Equal }
 
 class UrlForm private (val values: Map[String, Seq[String]]) extends AnyVal {
   override def toString: String = values.toString()

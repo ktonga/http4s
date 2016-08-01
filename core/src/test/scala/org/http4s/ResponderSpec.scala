@@ -1,9 +1,9 @@
 package org.http4s
 
-import Http4s._
-import org.specs2.mutable.Specification
 import org.http4s.Charset._
-import headers._
+import org.http4s.Http4s._
+import org.http4s.headers._
+import org.specs2.mutable.Specification
 
 class ResponderSpec extends Specification {
 

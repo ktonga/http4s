@@ -4,8 +4,6 @@ import scalaz.concurrent.Task
 
 import org.http4s._
 
-import org.specs2.mutable.After
-
 // TODO: this should have a more comprehensive test suite
 class ExternalBlazeHttp1ClientSpec extends Http4sSpec {
 

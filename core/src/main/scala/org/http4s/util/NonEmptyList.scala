@@ -4,8 +4,9 @@
  */
 package org.http4s.util
 
-import scala.annotation.tailrec
 import scalaz._
+
+import scala.annotation.tailrec
 
 /** A singly-linked list that is guaranteed to be non-empty.
   *
@@ -13,8 +14,9 @@ import scalaz._
   * one based on [[scala.List]].
   */
 final class NonEmptyList[+A] private[util] (val head: A, val tail: List[A]) {
-  import NonEmptyList._
   import Zipper._
+
+  import NonEmptyList._
 
   def <::[AA >: A](b: AA): NonEmptyList[AA] = nel(b, head :: tail)
 

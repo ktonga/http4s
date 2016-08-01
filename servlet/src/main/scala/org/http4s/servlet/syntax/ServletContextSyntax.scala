@@ -2,11 +2,11 @@ package org.http4s
 package servlet
 package syntax
 
-import javax.servlet.{ServletRegistration, ServletContext}
+import scalaz.concurrent.Strategy
 
 import org.http4s.server.AsyncTimeoutSupport
 
-import scalaz.concurrent.Strategy
+import javax.servlet.{ServletContext, ServletRegistration}
 
 trait ServletContextSyntax {
   implicit def ToServletContextOps(self: ServletContext): ServletContextOps = new ServletContextOps(self)

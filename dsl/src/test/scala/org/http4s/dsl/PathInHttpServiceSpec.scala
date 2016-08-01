@@ -1,8 +1,7 @@
 package org.http4s
 package dsl
 
-import scalaz.{ Failure, Success }
-import scalaz.concurrent.Task
+import scalaz.{Failure, Success}
 
 object PathInHttpServiceSpec extends Http4sSpec {
 

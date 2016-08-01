@@ -2,18 +2,15 @@ package org.http4s
 package server
 package middleware
 
-import compat._
-
-import java.util.concurrent.TimeUnit
+import scalaz.{-\/, \/, \/-}
+import scalaz.concurrent.Task
+import scalaz.stream.Cause.End
+import scalaz.stream.Process.{Halt, halt}
 
 import com.codahale.metrics._
+import org.http4s.compat._
 
-import org.http4s.{Method, Response, Request}
-
-import scalaz.stream.Cause.End
-import scalaz.{\/, -\/, \/-}
-import scalaz.concurrent.Task
-import scalaz.stream.Process.{Halt, halt}
+import java.util.concurrent.TimeUnit
 
 object Metrics {
 

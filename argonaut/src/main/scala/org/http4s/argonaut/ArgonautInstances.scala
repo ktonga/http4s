@@ -1,7 +1,7 @@
 package org.http4s
 package argonaut
 
-import _root_.argonaut.{EncodeJson, DecodeJson, Argonaut, Json}
+import _root_.argonaut.{Argonaut, DecodeJson, EncodeJson, Json}
 import org.http4s.headers.`Content-Type`
 
 trait ArgonautInstances {

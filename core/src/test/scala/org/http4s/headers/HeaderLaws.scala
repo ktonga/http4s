@@ -4,8 +4,6 @@ package headers
 import org.scalacheck.Arbitrary
 import org.typelevel.discipline.Laws
 
-import scalaz.\/-
-
 trait HeaderLaws extends Http4sSpec with Laws {
   def headerLaws(key: HeaderKey)(implicit arbHeader: Arbitrary[key.HeaderT]): RuleSet = {
     new SimpleRuleSet(

@@ -18,9 +18,9 @@
 package org.http4s
 package parser
 
-import org.parboiled2.{Rule0, Rule1, ParserInput}
 import org.http4s.headers.Authorization
 import org.http4s.util.CaseInsensitiveString._
+import org.parboiled2.{ParserInput, Rule0, Rule1}
 
 private[parser] trait AuthorizationHeader {
 

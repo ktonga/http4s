@@ -1,7 +1,7 @@
 package org.http4s.client.asynchttpclient
 
 import org.reactivestreams.tck.SubscriberWhiteboxVerification.{SubscriberPuppet, WhiteboxSubscriberProbe}
-import org.reactivestreams.{Subscription, Subscriber}
+import org.reactivestreams.{Subscriber, Subscription}
 
 /** Stackable trait to ease creating whitebox subscriber tests. */
 trait WhiteboxSubscriber[A] extends Subscriber[A] {

@@ -1,8 +1,8 @@
 package org.http4s
 
-import compat._
-
 import scalaz.Maybe
+
+import org.http4s.compat._
 
 trait QueryOps {
 

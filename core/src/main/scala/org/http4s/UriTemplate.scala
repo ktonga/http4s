@@ -1,6 +1,6 @@
 package org.http4s
 
-import org.http4s.Uri.{Authority, Host, IPv4, IPv6, RegName, Scheme}
+import org.http4s.Uri.{Fragment => _, Path => _, apply => _, unapply => _, _}
 import org.http4s.UriTemplate._
 
 import scala.collection.mutable

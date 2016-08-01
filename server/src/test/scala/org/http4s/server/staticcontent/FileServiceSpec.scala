@@ -5,8 +5,6 @@ package staticcontent
 import org.http4s.server.middleware.URITranslation
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
-
 class FileServiceSpec extends Http4sSpec with StaticContentShared {
 
   val s = fileService(FileService.Config(System.getProperty("user.dir")))

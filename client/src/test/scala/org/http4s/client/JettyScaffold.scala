@@ -1,13 +1,12 @@
 package org.http4s.client
 
-import java.net.{ServerSocket, InetSocketAddress, InetAddress}
-import javax.servlet.http.HttpServlet
-
-import org.eclipse.jetty.server.{Server => JServer, ServerConnector}
-import org.eclipse.jetty.servlet.{ServletHolder, ServletContextHandler}
+import org.eclipse.jetty.server.{ServerConnector, Server => JServer}
+import org.eclipse.jetty.servlet.{ServletContextHandler, ServletHolder}
 import org.http4s.Http4sSpec
 import org.specs2.specification.core.Fragments
 
+import java.net.{InetAddress, InetSocketAddress, ServerSocket}
+import javax.servlet.http.HttpServlet
 import scala.concurrent.duration._
 
 

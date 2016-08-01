@@ -1,12 +1,12 @@
 package org.http4s.client
 package blaze
 
-import javax.servlet.http.{HttpServletResponse, HttpServletRequest, HttpServlet}
+import scalaz.concurrent.Task
 
 import org.http4s._
 import org.specs2.specification.core.Fragments
 
-import scalaz.concurrent.Task
+import javax.servlet.http.{HttpServlet, HttpServletRequest, HttpServletResponse}
 
 
 class FollowRedirectSpec extends JettyScaffold("blaze-client Redirect") {

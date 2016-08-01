@@ -1,9 +1,9 @@
 package org
 
-import scalaz.{Kleisli, EitherT, \/}
-
+import scalaz.{EitherT, Kleisli, \/}
 import scalaz.concurrent.Task
 import scalaz.stream.Process
+
 import org.http4s.util.CaseInsensitiveString
 import scodec.bits.ByteVector
 

@@ -1,14 +1,12 @@
 package org.http4s
 package parser
 
-import java.time.Instant
-
-import Http4s._
-import headers._
 import org.http4s.headers.ETag.EntityTag
-import scalaz.{\/-, Success}
+import org.http4s.headers._
 import org.http4s.util.NonEmptyList
+
 import java.net.InetAddress
+import java.time.Instant
 
 class SimpleHeadersSpec extends Http4sSpec {
 

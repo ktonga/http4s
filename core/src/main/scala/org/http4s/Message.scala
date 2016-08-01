@@ -1,14 +1,15 @@
 package org.http4s
 
-import compat._
-
-import java.io.File
-import java.net.{InetSocketAddress, InetAddress}
-import org.http4s.headers._
-import org.http4s.server.ServerSoftware
 import scalaz.concurrent.Task
 import scalaz.stream.Process
 import scalaz.stream.text.utf8Decode
+
+import org.http4s.compat._
+import org.http4s.headers._
+import org.http4s.server.ServerSoftware
+
+import java.io.File
+import java.net.{InetAddress, InetSocketAddress}
 
 /**
  * Represents a HTTP Message. The interesting subclasses are Request and Response

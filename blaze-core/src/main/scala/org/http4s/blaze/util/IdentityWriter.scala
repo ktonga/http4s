@@ -1,11 +1,10 @@
 package org.http4s.blaze.util
 
-import java.nio.ByteBuffer
-
 import org.http4s.blaze.pipeline.TailStage
 import org.log4s.getLogger
 import scodec.bits.ByteVector
 
+import java.nio.ByteBuffer
 import scala.concurrent.{ExecutionContext, Future}
 
 class IdentityWriter(private var headers: ByteBuffer, size: Long, out: TailStage[ByteBuffer])

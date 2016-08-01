@@ -2,35 +2,29 @@ package org.http4s
 package server
 package blaze
 
-import compat._
-
-import java.util.Locale
-import java.util.concurrent.ExecutorService
+import scalaz.{-\/, \/-}
+import scalaz.concurrent.Task
+import scalaz.stream.Cause.{End, Terminated}
+import scalaz.stream.Process
 
 import org.http4s.Header.Raw
 import org.http4s.Status._
 import org.http4s.blaze.http.Headers
-import org.http4s.blaze.http.http20.{Http2StageTools, Http2Exception, NodeMsg}
-
-import org.http4s.{Method => HMethod, Headers => HHeaders, _}
-import org.http4s.blaze.pipeline.{ Command => Cmd }
-import org.http4s.blaze.pipeline.TailStage
+import org.http4s.blaze.http.http20.Http2Exception.{INTERNAL_ERROR, PROTOCOL_ERROR}
+import org.http4s.blaze.http.http20.{Http2Exception, Http2StageTools, NodeMsg}
+import org.http4s.blaze.pipeline.{TailStage, Command => Cmd}
 import org.http4s.blaze.util.Http2Writer
-import Http2Exception.{ PROTOCOL_ERROR, INTERNAL_ERROR }
-
+import org.http4s.compat._
+import org.http4s.util.CaseInsensitiveString._
+import org.http4s.{Headers => HHeaders, Method => HMethod}
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
-import scalaz.stream.Process
-import scalaz.stream.Cause.{Terminated, End}
-import scalaz.{\/-, -\/}
-
-import scala.collection.mutable.{ListBuffer, ArrayBuffer}
+import java.util.Locale
+import java.util.concurrent.ExecutorService
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 import scala.concurrent.ExecutionContext
 import scala.concurrent.duration.Duration
-import scala.util.{Success, Failure}
-
-import org.http4s.util.CaseInsensitiveString._
+import scala.util.{Failure, Success}
 
 private class Http2NodeStage(streamId: Int,
                      timeout: Duration,
@@ -40,7 +34,7 @@ private class Http2NodeStage(streamId: Int,
 {
 
   import Http2StageTools._
-  import NodeMsg.{ DataFrame, HeadersFrame }
+  import NodeMsg.{DataFrame, HeadersFrame}
 
   private implicit def ec = ExecutionContext.fromExecutor(executor)   // for all the onComplete calls
 
