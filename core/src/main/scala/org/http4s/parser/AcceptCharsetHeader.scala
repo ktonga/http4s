@@ -19,6 +19,7 @@ package org.http4s
 package parser
 
 import org.parboiled2._
+import org.http4s.batteries._
 import CharsetRange._
 
 

@@ -54,10 +54,10 @@ object Method extends MethodInstances {
   import Semantics._
 
   // Lookups will usually be on fromString, so we store it wrapped in a Xor.Right
-  private val registry = TrieMap[String, Xor.Right[Method]]()
+  private val registry = TrieMap[String, Right[Nothing, Method]]()
 
   private def register[M <: Method](method: M): method.type = {
-    registry(method.name) = Xor.Right(method)
+    registry(method.name) = Right(method)
     method
   }
 

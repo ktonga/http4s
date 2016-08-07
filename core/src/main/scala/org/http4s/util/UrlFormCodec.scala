@@ -4,7 +4,7 @@ import scala.collection.immutable.BitSet
 import scala.io.Codec
 
 import org.http4s.ParseResult
-import org.http4s.batteries._
+import org.http4s.batteries.{toFunctorOps => _, _}
 import org.http4s.parser.QueryParser
 
 object UrlFormCodec {

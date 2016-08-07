@@ -1,12 +1,12 @@
 package org.http4s
 
-import cats.data._
 import fs2.Task
 import org.http4s.batteries._
+import org.http4s.util._
 
 object DecodeResult {
-  def apply[A](fa: Task[DecodeFailure Xor A]): DecodeResult[A] =
-    XorT(fa)
+  def apply[A](fa: Task[Either[DecodeFailure, A]]): DecodeResult[A] =
+    EitherT(fa)
 
   def success[A](a: Task[A]): DecodeResult[A] =
     DecodeResult(a.map(right(_)))

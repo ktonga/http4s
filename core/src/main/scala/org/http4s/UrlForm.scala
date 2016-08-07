@@ -4,7 +4,7 @@ import scala.io.Codec
 
 import cats._
 import cats.data._
-import org.http4s.batteries._
+import org.http4s.batteries.{toFunctorOps => _, _}
 import org.http4s.headers._
 import org.http4s.parser._
 import org.http4s.util._
@@ -100,7 +100,7 @@ object UrlForm {
   }
 
   /** Attempt to decode the `String` to a [[UrlForm]] */
-  def decodeString(charset: Charset)(urlForm: String): MalformedMessageBodyFailure Xor UrlForm =
+  def decodeString(charset: Charset)(urlForm: String): Either[MalformedMessageBodyFailure, UrlForm] =
     QueryParser.parseQueryString(urlForm.replace("+", "%20"), new Codec(charset.nioCharset))
       .map(q => UrlForm(q.multiParams))
       .leftMap { parseFailure => MalformedMessageBodyFailure(parseFailure.message, None) }

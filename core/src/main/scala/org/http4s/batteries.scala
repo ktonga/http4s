@@ -1,12 +1,14 @@
 package org.http4s
 
+import scala.util.control.NonFatal
+
 private[http4s] trait Batteries extends AnyRef
     with cats.syntax.AllSyntax
     with cats.std.AllInstances
-    with cats.data.XorFunctions
     with fs2.interop.cats.Instances
     with util.CaseInsensitiveStringSyntax
     with util.ChunkInstances
+    with util.EitherSyntax
     with util.NonEmptyListSyntax
     with util.StringSyntax
 {
@@ -17,6 +19,16 @@ private[http4s] trait Batteries extends AnyRef
     def widen[B >: A]: F[B] =
       self.asInstanceOf[F[B]] // F.widen(self) in cats-0.7
   }
+
+  def left[A](a: A): Either[A, Nothing] =
+    Left(a)
+
+  def right[B](b: B): Either[Nothing, B] =
+    Right(b)
+
+  def catchNonFatal[A](f: => A): fs2.util.Attempt[A] =
+    try Right(f)
+    catch { case NonFatal(t) => Left(t) }
 }
 
 /** An all-batteries included import for internal use in http4s.  This
