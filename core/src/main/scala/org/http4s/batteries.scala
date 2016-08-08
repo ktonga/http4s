@@ -2,7 +2,7 @@ package org.http4s
 
 import scala.util.control.NonFatal
 
-private[http4s] trait Batteries extends AnyRef
+private[http4s] trait Batteries0 extends AnyRef
     with cats.syntax.AllSyntax
     with cats.std.AllInstances
     with fs2.interop.cats.Instances
@@ -35,4 +35,4 @@ private[http4s] trait Batteries extends AnyRef
   * is convenient on the master branch and reduces merge conflicts for
   * those maintaining ports to alternative stacks.
   */
-private[http4s] object batteries extends Batteries
+private[http4s] object batteries extends Batteries0
