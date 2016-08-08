@@ -1,15 +1,18 @@
-package org.http4s.util
+package org.http4s
+package util
 
 import scala.collection.immutable.BitSet
 import scala.io.Codec
 
 import org.http4s.ParseResult
-import org.http4s.batteries.{toFunctorOps => _, _}
+import org.http4s.batteries.{_}
 import org.http4s.parser.QueryParser
 
 object UrlFormCodec {
+  type Wtf[+A, +B] = Either[A, B]
+
   def decode(formData: String, codec: Codec = Codec.UTF8): ParseResult[Map[String, Seq[String]]] =
-    QueryParser.parseQueryString(formData.replace("+", "%20"), codec).map(_.multiParams)
+    (QueryParser.parseQueryString(formData.replace("+", "%20"), codec): Wtf[ParseFailure, Query]).map(_.multiParams)
 
   def encode(formData: Map[String,Seq[String]]): String = {
     val sb = new StringBuilder(formData.size * 20)
